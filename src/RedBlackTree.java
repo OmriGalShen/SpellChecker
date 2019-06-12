@@ -2,9 +2,10 @@ public class RedBlackTree
 {
     //Tree variables
     public Node root;
+    //
     public RedBlackTree()
     {
-        this.root=Node.nil;
+        this.root=new Node();
     }
     public RedBlackTree(Node root)
     {
@@ -12,37 +13,37 @@ public class RedBlackTree
     }
     public void leftRotate(Node x)
     {
-        Node y=x.left;
-        x.right=y.left;
-        if(y.left!=null){
-            y.parent.left=x;
+        Node y = x.getRight();
+        x.setRight(y.getLeft());
+        if(!y.getLeft().isNull()){
+            y.getLeft().setParent(x);
         }
-        y.parent=x.parent;
-        if(x.parent==null){
+        y.setParent(x.getParent());
+        if(x.getParent().isNull()){
             this.root=y;
         }
-        else if(x==x.parent.left)
-            x.parent.left=y;
+        else if(x==x.getParent().getLeft())
+            x.getParent().setLeft(y);
         else
-            x.parent.right=y;
-        y.left=x;
-        x.parent=y;
+            x.getParent().setRight(y);
+        y.setLeft(x);
+        x.setParent(y);
     }
     public void rightRotate(Node x)
     {
-        Node y = x.left;
-        x.left=y.right;
-        if(y.right!=null)
-            y.parent.right=x;
-        y.parent=x.parent;
-        if(x.parent==null)
+        Node y = x.getLeft();
+        x.setLeft(y.getLeft());
+        if(y.getRight().isNull())
+            y.getRight().setParent(x);
+        y.setParent(x.getParent());
+        if(x.getParent().isNull())
             this.root=y;
-        else if(x==x.parent.right)
-            x.parent.right=y;
+        else if(x==x.getParent().getRight())
+            x.getParent().setRight(y);
         else
-            x.parent.left=y;
-        x.right=x;
-        x.parent=y;
+            x.getParent().setLeft(y);
+        y.setRight(x);
+        x.setParent(y);
     }
     public void insert(int key)
     {
@@ -50,74 +51,76 @@ public class RedBlackTree
     }
     public void insert(Node z)
     {
-        Node y = Node.nil;
+        Node y = new Node();
         Node x = this.root;
-        while (x!=Node.nil)
+        while (!x.isNull())
         {
             y=x;
             if(z.key<x.key)
-                x=x.left;
+                x=x.getLeft();
             else
-                x=x.right;
+                x=x.getRight();
         }
-        z.parent=y;
-        if(y==Node.nil)
+        z.setParent(y);
+        if(y.isNull())
             this.root=z;
         else if(z.key<y.key)
-            y.left=z;
+            y.setLeft(z);
         else
-            y.right=z;
-        z.left=Node.nil;
-        z.right=Node.nil;
-        z.color = Node.Color.RED;
+            y.setRight(z);
+        z.getLeft().makeNull();
+        z.getRight().makeNull();
+        z.makeRed();
         insertFixup(z);
     }
     private void insertFixup(Node z)
     {
-        while (z.parent.color== Node.Color.RED)//overall loop
+        while (z.getParent().isRed())//overall loop
         {
-            if(z.parent==z.parent.parent.left) // z in left sub tree case
+            if(z.getParent()==z.getParent().getParent().getLeft()) // z in left sub tree case
             {
-                Node y =z.parent.parent.right; //uncle
-                if(y.color== Node.Color.RED)//case 1
+                Node y =z.getParent().getParent().getRight(); //uncle
+                if(y.isRed())//case 1
                 {
-                    z.parent.color= Node.Color.BLACK;
-                    y.color= Node.Color.BLACK;
-                    z.parent.parent.color= Node.Color.RED;
-                    z = z.parent.parent;
+                    z.getParent().makeBlack();
+                    y.makeBlack();
+                    z.getParent().getParent().makeRed();
+                    z = z.getParent().getParent();
+                    continue;
                 }
-                else if(z==z.parent.right)//case 2
+                else if(z==z.getParent().getRight())//case 2
                 {
-                    z = z.parent;
+                    z = z.getParent();
                     this.leftRotate(z);
                 }
                 //case 3
-                z.parent.color= Node.Color.BLACK;
-                z.parent.parent.color= Node.Color.RED;
-                this.rightRotate(z.parent.parent);
+                z.getParent().makeBlack();
+                z.getParent().getParent().makeRed();
+                this.rightRotate(z.getParent().getParent());
             }
             else //z in right sub tree case
             {
-                Node y =z.parent.parent.left;//uncle
-                if(y.color== Node.Color.RED)//case 1
+                Node y =z.getParent().getParent().getLeft();//uncle
+                if(y.isRed())//case 1
                 {
-                    z.parent.color= Node.Color.BLACK;
-                    y.color= Node.Color.BLACK;
-                    z.parent.parent.color= Node.Color.RED;
-                    z = z.parent.parent;
+                    z.getParent().makeBlack();
+                    y.makeBlack();
+                    z.getParent().getParent().makeRed();
+                    z = z.getParent().getParent();
+                    continue;
                 }
-                else if(z==z.parent.left)//case 2
+                else if(z==z.getParent().getLeft())//case 2
                 {
-                    z = z.parent;
+                    z = z.getParent();
                     this.rightRotate(z);
                 }
                 //case 3
-                z.parent.color= Node.Color.BLACK;
-                z.parent.parent.color= Node.Color.RED;
-                this.leftRotate(z.parent.parent);
+                z.getParent().makeBlack();
+                z.getParent().getParent().makeRed();
+                this.leftRotate(z.getParent().getParent());
             }// end z is in right sub tree case
         }//loop close
-        this.root.color=Node.Color.BLACK;
+        this.root.makeBlack();
     }//end method
     public int nodeCount()
     {
@@ -125,9 +128,9 @@ public class RedBlackTree
     }
     private int nodeCount(Node x, int count)
     {
-        if(x==Node.nil)
+        if(x.isNull())
             return count;
-        return 1+nodeCount(x.left,count)+nodeCount(x.right,count);
+        return 1+nodeCount(x.getLeft(),count)+nodeCount(x.getRight(),count);
     }
     public void printInOrder()
     {
@@ -135,11 +138,11 @@ public class RedBlackTree
     }
     private void printInOrder(Node x)
     {
-        if(x!=Node.nil)
+        if(!x.isNull())
         {
-            printInOrder(x.left);
+            printInOrder(x.getLeft());
             System.out.println(x);
-            printInOrder(x.right);
+            printInOrder(x.getRight());
         }
     }
 }

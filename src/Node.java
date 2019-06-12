@@ -1,32 +1,30 @@
 public class Node
 {
     //Node variables
-    public Node parent,left,right;
+    private Node parent,left,right;
     public enum Color{RED,BLACK}
-    public Color color;
+    private Color color;
     public int key;
-    public static Node nil = initNil();
-    //
-    public static Node initNil()
-    {
-        Node nil = new Node();
-        nil.parent=nil;
-        nil.left=nil;
-        nil.right=nil;
-        nil.color=Color.BLACK;
-        return nil;
-    }
+    private boolean isNull;
+
     public Node()
     {
-        parent = nil;
-        left=nil;
-        right=nil;
-        color = Color.RED;
+        parent = this;
+        left=this;
+        right=this;
+        color = Color.BLACK;
         this.key = -1;
+        this.isNull=true;
     }
     public Node(int key){
-        this();
+        Node p = new Node();
+        Node child = new Node();
+        this.setRight(child);
+        this.setLeft(child);
+        this.setParent(p);
         this.key=key;
+        this.color=Color.BLACK;
+        this.isNull=false;
     }
     public Node(Node other){
         this.parent=other.parent;
@@ -34,11 +32,76 @@ public class Node
         this.right=other.right;
         this.color=other.color;
         this.key=other.key;
+        this.isNull=other.isNull;
+    }
+
+    public boolean isRed() {
+        return color==Color.RED;
+    }
+
+    public boolean isBlack() {
+        return !isRed();
+    }
+
+    public void makeRed(){
+        if(!this.isNull)
+            this.color= Color.RED;
+    }
+
+    public void makeBlack(){
+        this.color=Color.BLACK;
+    }
+
+    public boolean isNull() {
+        return isNull;
+    }
+
+    public void makeNull() {
+        this.isNull = true;
+        this.color=Color.BLACK;
+    }
+
+    public Node getParent() {
+        return parent;
+    }
+
+    public void setParent(Node parent){
+        this.parent=parent;
+//        if(this.isLeftChild())
+//            parent.setLeft(this);
+//        else
+//            parent.setRight(this);
+    }
+
+    public Node getLeft() {
+        return left;
+
+    }
+
+    public void setLeft(Node left) {
+        this.left = left;
+        this.left.parent=this;
+    }
+
+    public Node getRight() {
+        return right;
+    }
+
+    public void setRight(Node right) {
+        this.right = right;
+        this.right.parent = this;
+    }
+
+    public boolean isRightChild(){
+        return this==this.getParent().getRight();
+    }
+    public boolean isLeftChild(){
+        return !isRightChild();
     }
     public String toString()
     {
-        if(this == nil)
-            return "nil";
+        if(this.isNull)
+            return "null";
         if(this.color==Color.RED)
             return "("+this.key+",R)";
         return "("+this.key+",B)";
