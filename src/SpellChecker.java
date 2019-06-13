@@ -21,7 +21,7 @@ public class SpellChecker {
         // delete words in dictionary from the input tree
         deleteCorrectWords(inputTree,dictMap);
         //print list of suspicious words
-        //printIncorrectWords(inputTree,dictMap);
+        //printIncorrectWords(inputTree);
         printSuggestions(inputTree,dictMap); // option to see suggestion
     }
     private static void deleteCorrectWords(RedBlackTree<String> tree, HashMap<String,Integer> dictMap)
@@ -43,7 +43,7 @@ public class SpellChecker {
             fillWordList(p.getRight(),wordList,dictMap);// right sub tree
         }
     }
-    private static void printIncorrectWords(RedBlackTree<String> tree,HashMap<String,Integer> dictMap)
+    private static void printIncorrectWords(RedBlackTree<String> tree)
     {
         ArrayList<String> incorrectWords = tree.getListInOrder();
         if(incorrectWords.size()>0) {
