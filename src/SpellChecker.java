@@ -48,14 +48,17 @@ public class SpellChecker {
         ArrayList<String> incorrectWords = tree.getListInOrder();
         if(incorrectWords.size()>0) {
             System.out.println("Suspicious words:");
-            System.out.println();
             String temp;
             for (int i = 0; i < incorrectWords.size(); i++)
             {
-                if(i>0)
-                    System.out.print(", ");
                 temp=incorrectWords.get(i);
-                System.out.print(temp + " ("+closestWord(temp,dictMap)+"?)");
+                //option 1: print 1 suggestion
+//                if(i>0)
+//                    System.out.print(", ");
+//                System.out.print(temp + " ("+closestWord(temp,dictMap)+"?)");
+                //option 1: print 3 suggestions
+                String[] closestWords = threeClosestWord(temp,dictMap);
+                System.out.println(temp + "? ("+closestWords[0]+","+closestWords[1]+","+closestWords[2]+")");
             }
         }
         else
@@ -79,12 +82,39 @@ public class SpellChecker {
         }
         return bestMatch;
     }
-    private static int matchCalc(String s1,
+    private static String[] threeClosestWord(String checkWord, HashMap<String,Integer> dictMap)
+    {
+        String[] bestMatches = new String[3];
+        double[] scores = new double[3];
+        double matchScore=0;
+        for(String dictWord: dictMap.keySet())
+        {
+            matchScore=matchCalc(checkWord,dictWord);
+            if(matchScore>scores[0])
+            {
+                scores[0]=matchScore;
+                bestMatches[0]=dictWord;
+            }
+            else if(matchScore>scores[1])
+            {
+                scores[1]=matchScore;
+                bestMatches[1]=dictWord;
+            }
+            else if(matchScore>scores[2])
+            {
+                scores[2]=matchScore;
+                bestMatches[2]=dictWord;
+            }
+        }
+        return bestMatches;
+    }
+    private static double matchCalc(String s1,
                           String s2)
     {
-        int matchPoints = 0,temp,diff;
-        int matchFactor = 3;
-        int diffFactor = 2;
+        double matchPoints = 0;
+        int temp,diff;
+        double matchFactor = 5;
+        double diffFactor = 1;
         for (int i = 0; i < s1.length(); i++)
         {
             temp=s1.charAt(i);
