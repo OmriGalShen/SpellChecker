@@ -1,7 +1,7 @@
 public class Node<T extends Comparable>
 {
     //Node variables
-    private Node parent,left,right;
+    private Node<T>parent,left,right;
     public enum Color{RED,BLACK}
     private Color color;
     public T key;
@@ -17,8 +17,8 @@ public class Node<T extends Comparable>
         this.isNull=true;
     }
     public Node(T key){
-        Node p = new Node();
-        Node child = new Node();
+        Node<T>p = new Node<>();
+        Node<T>child = new Node<>();
         this.setRight(child);
         this.setLeft(child);
         this.setParent(p);
@@ -26,7 +26,7 @@ public class Node<T extends Comparable>
         this.color=Color.BLACK;
         this.isNull=false;
     }
-    public Node(Node other){
+    public Node(Node<T>other){
         this.parent=other.parent;
         this.left=other.left;
         this.right=other.right;
@@ -61,11 +61,11 @@ public class Node<T extends Comparable>
         this.color=Color.BLACK;
     }
 
-    public Node getParent() {
+    public Node<T>getParent() {
         return parent;
     }
 
-    public void setParent(Node parent){
+    public void setParent(Node<T>parent){
         this.parent=parent;
 //        if(this.isLeftChild())
 //            parent.setLeft(this);
@@ -73,21 +73,21 @@ public class Node<T extends Comparable>
 //            parent.setRight(this);
     }
 
-    public Node getLeft() {
+    public Node<T>getLeft() {
         return left;
 
     }
 
-    public void setLeft(Node left) {
+    public void setLeft(Node<T>left) {
         this.left = left;
         this.left.parent=this;
     }
 
-    public Node getRight() {
+    public Node<T>getRight() {
         return right;
     }
 
-    public void setRight(Node right) {
+    public void setRight(Node<T>right) {
         this.right = right;
         this.right.parent = this;
     }
@@ -96,7 +96,7 @@ public class Node<T extends Comparable>
         return !this.isNull;
     }
 
-    public void copyColor(Node other)
+    public void copyColor(Node<T>other)
     {
         this.color=other.color;
     }
