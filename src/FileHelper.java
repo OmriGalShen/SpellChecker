@@ -38,6 +38,7 @@ public class FileHelper
             while(input.hasNext())
             {
                 temp=input.next();// current word in file
+                temp=fixWord(temp); //trim spaces and make lower case
                 if(temp.length()>0) //word is valid
                     tree.insert(temp); //insert word in tree
             }
@@ -73,6 +74,7 @@ public class FileHelper
             while(input.hasNext())
             {
                 temp=input.next(); // current word in file
+                temp=fixWord(temp); //trim spaces and make lower case
                 if(temp.length()>0)
                 {
                     map.put(temp,counter);
@@ -87,5 +89,9 @@ public class FileHelper
         {
             System.out.println("problem with reading file");
         }
+    }
+    private static String fixWord(String str)
+    {
+        return str.trim().toLowerCase();
     }
 }

@@ -8,19 +8,18 @@ public class SpellChecker {
         //get text files
         FileInputStream dictFile = FileHelper.readTextFile("src\\DictionaryFile.txt"); //read dictionary file
         FileInputStream inputFile = FileHelper.readTextFile("src\\InputFile.txt"); // read input file
-        //
         //insert dictionary to hash table
         HashMap<String,Integer> dictMap = new HashMap<String, Integer>();// initialize hash table
         FileHelper.insertFileToMap(dictFile,dictMap); // insert dictionary words to hash table
-        //
         ////insert input text to red black tree
         RedBlackTree<String> inputTree = new RedBlackTree<String>(); // initialize tree
         FileHelper.insertFileToTree(inputFile,inputTree); // insert input words to tree
-        //
+        // delete words in dictionary from the input tree
         deleteCorrectWords(inputTree,dictMap);
+        //print list of suspicious words
         printTree(inputTree);
     }
-    public static void deleteCorrectWords(RedBlackTree<String> tree, HashMap<String,Integer> dictMap)
+    private static void deleteCorrectWords(RedBlackTree<String> tree, HashMap<String,Integer> dictMap)
     {
          deleteCorrectWords(tree.getRoot(),tree,dictMap);//call recursive function
     }
