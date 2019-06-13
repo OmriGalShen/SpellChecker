@@ -10,7 +10,6 @@ public class SpellChecker {
         t.insert(2);
 //        System.out.println(t.root);
         t.printInOrder();
-        t.printTree();
         System.out.println("nodes: "+t.nodeCount());
     }
 }

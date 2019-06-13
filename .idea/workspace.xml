@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fe1964f6-2bdc-4822-b645-96a178f178a6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Node.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/RedBlackTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RedBlackTree.java" afterDir="false" />
@@ -16,16 +16,15 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="DefaultGradleProjectSettings">
-    <option name="testRunner" value="GRADLE" />
-    <option name="delegatedBuild" value="true" />
+    <option name="isMigrated" value="true" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/SpellChecker.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="312">
-              <caret line="12" column="22" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
+            <state relative-caret-position="234">
+              <caret line="9" column="20" lean-forward="true" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
             </state>
           </provider>
         </entry>
@@ -33,24 +32,27 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Node.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="610">
-              <caret line="99" column="5" lean-forward="true" selection-start-line="99" selection-start-column="5" selection-end-line="99" selection-end-column="5" />
+            <state relative-caret-position="433">
+              <caret line="100" column="31" selection-start-line="100" selection-start-column="31" selection-end-line="100" selection-end-column="31" />
               <folding>
-                <element signature="e#139#140#0" expanded="true" />
-                <element signature="e#167#168#0" expanded="true" />
-                <element signature="e#934#935#0" expanded="true" />
-                <element signature="e#962#963#0" expanded="true" />
-                <element signature="e#309#310#0" expanded="true" />
-                <element signature="e#328#329#0" expanded="true" />
-                <element signature="e#211#212#0" expanded="true" />
-                <element signature="e#240#241#0" expanded="true" />
-                <element signature="e#210#211#0" expanded="true" />
-                <element signature="e#247#248#0" expanded="true" />
-                <element signature="e#1760#1761#0" expanded="true" />
-                <element signature="e#1833#1834#0" expanded="true" />
-                <element signature="e#1859#1860#0" expanded="true" />
-                <element signature="e#1923#1924#0" expanded="true" />
-                <element signature="e#1946#1947#0" expanded="true" />
+                <element signature="class#Color#0;class#Node#0" />
+                <element signature="method#Node#0;class#Node#0" />
+                <element signature="method#Node#1;class#Node#0" />
+                <element signature="method#Node#2;class#Node#0" />
+                <element signature="method#makeRed#0;class#Node#0" />
+                <element signature="n#!!block;n#makeBlack#0;n#Node#0" />
+                <element signature="method#makeNull#0;class#Node#0" />
+                <element signature="method#setParent#0;class#Node#0" />
+                <element signature="e#1419#1451#0" />
+                <element signature="method#getLeft#0;class#Node#0" />
+                <element signature="method#setLeft#0;class#Node#0" />
+                <element signature="method#setRight#0;class#Node#0" />
+                <element signature="n#!!block;n#notLeaf#0;n#Node#0" />
+                <element signature="e#1981#1982#0" expanded="true" />
+                <element signature="e#1999#2000#0" expanded="true" />
+                <element signature="n#!!block;n#isRightChild#0;n#Node#0" />
+                <element signature="n#!!block;n#isLeftChild#0;n#Node#0" />
+                <element signature="method#toString#0;class#Node#0" />
               </folding>
             </state>
           </provider>
@@ -59,15 +61,32 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/RedBlackTree.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="303">
-              <caret line="141" column="9" lean-forward="true" selection-start-line="141" selection-start-column="9" selection-end-line="141" selection-end-column="9" />
+            <state relative-caret-position="173">
+              <caret line="222" column="29" selection-start-line="222" selection-start-column="29" selection-end-line="222" selection-end-column="29" />
               <folding>
-                <element signature="e#114#115#0" expanded="true" />
-                <element signature="e#144#145#0" expanded="true" />
-                <element signature="e#215#216#0" expanded="true" />
-                <element signature="e#1232#1233#0" expanded="true" />
-                <element signature="e#3705#3706#0" expanded="true" />
-                <element signature="e#3964#3965#0" expanded="true" />
+                <element signature="method#getMinNode#1;class#RedBlackTree#0" />
+                <element signature="method#getMinNode#3;class#RedBlackTree#0" />
+                <element signature="method#getSuccessor#1;class#RedBlackTree#0" />
+                <element signature="e#989#1017#1" />
+                <element signature="method#getSuccessor#1;class#RedBlackTree#0" />
+                <element signature="e#1213#1270#1" />
+                <element signature="method#leftRotate#0;class#RedBlackTree#0" />
+                <element signature="e#355#404#1" />
+                <element signature="e#475#511#1" />
+                <element signature="method#rightRotate#0;class#RedBlackTree#0" />
+                <element signature="method#insert#1;class#RedBlackTree#0" />
+                <element signature="e#1364#1500#1" />
+                <element signature="method#insertFixup#0;class#RedBlackTree#0" />
+                <element signature="e#1887#3567#0" />
+                <element signature="e#1995#2732#1" />
+                <element signature="e#2121#2360#1" />
+                <element signature="e#2438#2536#1" />
+                <element signature="e#2789#3523#0" />
+                <element signature="e#2913#3152#1" />
+                <element signature="e#3229#3328#1" />
+                <element signature="method#nodeCount#1;class#RedBlackTree#0" />
+                <element signature="method#printInOrder#1;class#RedBlackTree#0" />
+                <element signature="e#4042#4167#1" />
               </folding>
             </state>
           </provider>
@@ -94,17 +113,18 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/Node.java" />
         <option value="$PROJECT_DIR$/src/SpellChecker.java" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/src/Node.java" />
         <option value="$PROJECT_DIR$/src/RedBlackTree.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1911" />
-    <option name="y" value="327" />
-    <option name="width" value="1938" />
-    <option name="height" value="1098" />
+    <option name="x" value="1910" />
+    <option name="y" value="326" />
+    <option name="width" value="1939" />
+    <option name="height" value="1099" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -112,6 +132,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -128,12 +150,11 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="ignore_missing_gitignore" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
   </component>
   <component name="RecentsManager">
@@ -182,17 +203,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1913" y="329" width="1550" height="878" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info id="Favorites" side_tool="true" />
-      <window_info id="Designer" />
-      <window_info id="UI Designer" />
-      <window_info id="Learn" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1704698" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17248322" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Version Control" weight="0.32967034" />
-      <window_info active="true" anchor="bottom" id="Terminal" visible="true" weight="0.32967034" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" weight="0.32967034" />
+      <window_info id="Designer" order="2" />
+      <window_info id="Learn" order="3" />
+      <window_info id="UI Designer" order="4" />
+      <window_info id="Favorites" order="5" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32967034" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32967034" />
@@ -200,12 +218,16 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="right" id="Palette" />
-      <window_info anchor="right" id="Maven" />
-      <window_info anchor="right" id="Palette&#9;" />
+      <window_info anchor="bottom" id="Terminal" order="7" weight="0.32967034" />
+      <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
+      <window_info anchor="bottom" id="Version Control" order="9" weight="0.32967034" />
+      <window_info anchor="bottom" id="Messages" order="10" weight="0.32967034" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Maven" order="4" />
+      <window_info anchor="right" id="Palette&#9;" order="5" />
     </layout>
   </component>
   <component name="debuggerHistoryManager">
@@ -251,48 +273,75 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/SpellChecker.java">
+    <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="312">
-          <caret line="12" column="22" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
+          <caret line="12" column="9" lean-forward="true" selection-start-line="12" selection-start-column="9" selection-end-line="12" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SpellChecker.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="9" column="20" lean-forward="true" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Node.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="610">
-          <caret line="99" column="5" lean-forward="true" selection-start-line="99" selection-start-column="5" selection-end-line="99" selection-end-column="5" />
+        <state relative-caret-position="433">
+          <caret line="100" column="31" selection-start-line="100" selection-start-column="31" selection-end-line="100" selection-end-column="31" />
           <folding>
-            <element signature="e#139#140#0" expanded="true" />
-            <element signature="e#167#168#0" expanded="true" />
-            <element signature="e#934#935#0" expanded="true" />
-            <element signature="e#962#963#0" expanded="true" />
-            <element signature="e#309#310#0" expanded="true" />
-            <element signature="e#328#329#0" expanded="true" />
-            <element signature="e#211#212#0" expanded="true" />
-            <element signature="e#240#241#0" expanded="true" />
-            <element signature="e#210#211#0" expanded="true" />
-            <element signature="e#247#248#0" expanded="true" />
-            <element signature="e#1760#1761#0" expanded="true" />
-            <element signature="e#1833#1834#0" expanded="true" />
-            <element signature="e#1859#1860#0" expanded="true" />
-            <element signature="e#1923#1924#0" expanded="true" />
-            <element signature="e#1946#1947#0" expanded="true" />
+            <element signature="class#Color#0;class#Node#0" />
+            <element signature="method#Node#0;class#Node#0" />
+            <element signature="method#Node#1;class#Node#0" />
+            <element signature="method#Node#2;class#Node#0" />
+            <element signature="method#makeRed#0;class#Node#0" />
+            <element signature="n#!!block;n#makeBlack#0;n#Node#0" />
+            <element signature="method#makeNull#0;class#Node#0" />
+            <element signature="method#setParent#0;class#Node#0" />
+            <element signature="e#1419#1451#0" />
+            <element signature="method#getLeft#0;class#Node#0" />
+            <element signature="method#setLeft#0;class#Node#0" />
+            <element signature="method#setRight#0;class#Node#0" />
+            <element signature="n#!!block;n#notLeaf#0;n#Node#0" />
+            <element signature="e#1981#1982#0" expanded="true" />
+            <element signature="e#1999#2000#0" expanded="true" />
+            <element signature="n#!!block;n#isRightChild#0;n#Node#0" />
+            <element signature="n#!!block;n#isLeftChild#0;n#Node#0" />
+            <element signature="method#toString#0;class#Node#0" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/RedBlackTree.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="303">
-          <caret line="141" column="9" lean-forward="true" selection-start-line="141" selection-start-column="9" selection-end-line="141" selection-end-column="9" />
+        <state relative-caret-position="173">
+          <caret line="222" column="29" selection-start-line="222" selection-start-column="29" selection-end-line="222" selection-end-column="29" />
           <folding>
-            <element signature="e#114#115#0" expanded="true" />
-            <element signature="e#144#145#0" expanded="true" />
-            <element signature="e#215#216#0" expanded="true" />
-            <element signature="e#1232#1233#0" expanded="true" />
-            <element signature="e#3705#3706#0" expanded="true" />
-            <element signature="e#3964#3965#0" expanded="true" />
+            <element signature="method#getMinNode#1;class#RedBlackTree#0" />
+            <element signature="method#getMinNode#3;class#RedBlackTree#0" />
+            <element signature="method#getSuccessor#1;class#RedBlackTree#0" />
+            <element signature="e#989#1017#1" />
+            <element signature="method#getSuccessor#1;class#RedBlackTree#0" />
+            <element signature="e#1213#1270#1" />
+            <element signature="method#leftRotate#0;class#RedBlackTree#0" />
+            <element signature="e#355#404#1" />
+            <element signature="e#475#511#1" />
+            <element signature="method#rightRotate#0;class#RedBlackTree#0" />
+            <element signature="method#insert#1;class#RedBlackTree#0" />
+            <element signature="e#1364#1500#1" />
+            <element signature="method#insertFixup#0;class#RedBlackTree#0" />
+            <element signature="e#1887#3567#0" />
+            <element signature="e#1995#2732#1" />
+            <element signature="e#2121#2360#1" />
+            <element signature="e#2438#2536#1" />
+            <element signature="e#2789#3523#0" />
+            <element signature="e#2913#3152#1" />
+            <element signature="e#3229#3328#1" />
+            <element signature="method#nodeCount#1;class#RedBlackTree#0" />
+            <element signature="method#printInOrder#1;class#RedBlackTree#0" />
+            <element signature="e#4042#4167#1" />
           </folding>
         </state>
       </provider>

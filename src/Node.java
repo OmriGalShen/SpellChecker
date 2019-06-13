@@ -43,16 +43,16 @@ public class Node
         return !isRed();
     }
 
-    public void makeRed(){
+    public void setRed(){
         if(!this.isNull)
             this.color= Color.RED;
     }
 
-    public void makeBlack(){
+    public void setBlack(){
         this.color=Color.BLACK;
     }
 
-    public boolean isNull() {
+    public boolean isLeaf() {
         return isNull;
     }
 
@@ -90,6 +90,15 @@ public class Node
     public void setRight(Node right) {
         this.right = right;
         this.right.parent = this;
+    }
+
+    public boolean notLeaf(){
+        return !this.isNull;
+    }
+
+    public void copyColor(Node other)
+    {
+        this.color=other.color;
     }
 
     public boolean isRightChild(){
