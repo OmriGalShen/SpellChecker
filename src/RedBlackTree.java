@@ -35,7 +35,7 @@ public class RedBlackTree
     }
     public Node getMaxNode()
     {
-        return getMinNode(this.root);
+        return getMaxNode(this.root);
     }
     private Node getMaxNode(Node x)
     {
@@ -45,8 +45,8 @@ public class RedBlackTree
     }
     public Node getSuccessor(Node x)
     {
-        if(!x.getRight().isLeaf())
-            return getSuccessor(x.getRight());
+        if(x.getRight().notLeaf())
+            return getMinNode(x.getRight());
         Node y = x.getParent();
         while (y.notLeaf() && x==y.getRight()){
             x=y;
@@ -57,7 +57,7 @@ public class RedBlackTree
     public Node getPredecessor(Node x)
     {
         if(!x.getLeft().isLeaf())
-            return getPredecessor(x.getLeft());
+            return getMaxNode(x.getLeft());
         Node y = x.getParent();
         while (y.notLeaf() && x==y.getLeft()){
             x=y;
@@ -176,6 +176,13 @@ public class RedBlackTree
         }//loop close
         this.root.setBlack();
     }//end method
+    public Node delete(int key)
+    {
+        Node x = search(key);
+        if(x.notLeaf())
+            return delete(x);
+        return x;
+    }
     public Node delete(Node z)
     {
         Node y;
@@ -201,7 +208,7 @@ public class RedBlackTree
             deleteFixup(x);
         return y;
     }
-    public void deleteFixup(Node x)
+    private void deleteFixup(Node x)
     {
         while (x.notLeaf() && x.isBlack())
         {// main loop

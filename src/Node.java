@@ -110,7 +110,7 @@ public class Node
     public String toString()
     {
         if(this.isNull)
-            return "null";
+            return "leaf";
         if(this.color==Color.RED)
             return "("+this.key+",R)";
         return "("+this.key+",B)";
