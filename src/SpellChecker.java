@@ -6,23 +6,23 @@ import java.util.HashMap;
 public class SpellChecker {
     public static void main(String[] args)
     {
-        //get text files
-        //get dictionary file
+        //get dictionary file:
         FileInputStream dictFile = FileHelper.readTextFile("src\\DictionaryFile.txt"); //read dictionary file
-        //dictFile = FileHelper.readTextFile("src\\BasicDictionaryFile.txt"); //you can use this basic dictionary file instead
-        //get input file
+        //dictFile = FileHelper.readTextFile("src\\BasicDictionaryFile.txt"); //option to use basic dictionary file instead
+        //get input file:
         FileInputStream inputFile = FileHelper.readTextFile("src\\InputFile.txt"); // read input file
-        //inputFile = FileHelper.readTextFile("src\\Test.txt"); // you can use test text instead
-        //insert dictionary to hash table
+        //inputFile = FileHelper.readTextFile("src\\Test.txt"); // option to use test input file
+        //insert dictionary to hash table:
         HashMap<String,Integer> dictMap = new HashMap<String, Integer>();// initialize hash table
         FileHelper.insertFileToMap(dictFile,dictMap); // insert dictionary words to hash table
-        ////insert input text to red black tree
+        //insert input text to red black tree:
         RedBlackTree<String> inputTree = new RedBlackTree<String>(); // initialize tree
         FileHelper.insertFileToTree(inputFile,inputTree); // insert input words to tree
         // delete words in dictionary from the input tree
         deleteCorrectWords(inputTree,dictMap);
         //print list of suspicious words
-        printIncorrectWords(inputTree,dictMap);
+        //printIncorrectWords(inputTree,dictMap);
+        printSuggestions(inputTree,dictMap); // option to see suggestion
     }
     private static void deleteCorrectWords(RedBlackTree<String> tree, HashMap<String,Integer> dictMap)
     {
@@ -44,6 +44,26 @@ public class SpellChecker {
         }
     }
     private static void printIncorrectWords(RedBlackTree<String> tree,HashMap<String,Integer> dictMap)
+    {
+        ArrayList<String> incorrectWords = tree.getListInOrder();
+        if(incorrectWords.size()>0) {
+            System.out.println("Suspicious words:");
+            String temp;
+            for (int i = 0; i < incorrectWords.size(); i++)
+            {
+                temp=incorrectWords.get(i);
+                if(i>0)
+                    System.out.print(", ");
+                System.out.print(temp);
+            }
+        }
+        else
+        {
+            System.out.println("Spelling seems ok");
+        }
+        System.out.println();
+    }
+    private static void printSuggestions(RedBlackTree<String> tree,HashMap<String,Integer> dictMap)
     {
         ArrayList<String> incorrectWords = tree.getListInOrder();
         if(incorrectWords.size()>0) {
@@ -114,7 +134,7 @@ public class SpellChecker {
         double matchPoints = 0;
         int temp,diff;
         double matchFactor = 5;
-        double diffFactor = 2;
+        double diffFactor = 1;
         for (int i = 0; i < s1.length(); i++)
         {
             temp=s1.charAt(i);
