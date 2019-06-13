@@ -1,7 +1,7 @@
 public class RedBlackTree
 {
     //Tree variables
-    public Node root;
+    private Node root;
     //
     public RedBlackTree()
     {
@@ -11,16 +11,16 @@ public class RedBlackTree
     {
         this.root=root;
     }
-    public Node search(int key)
+    public Node search(String key)
     {
         return search(this.root,key);
     }
-    private Node search(Node x, int key)
+    private Node search(Node x, String key)
     {
-        if(x.isLeaf() || x.key==key)
+        if(x.isLeaf() || x.key.equals(key))
             return x;
-        if(key<x.key)
-            return  search(x.getLeft(),key);
+        if(key.compareTo(x.key)<0)
+            return search(x.getLeft(),key);
         return search(x.getRight(),key);
     }
     public Node getMinNode()
@@ -86,20 +86,20 @@ public class RedBlackTree
     private void rightRotate(Node x)
     {
         Node y = x.getLeft();
-        x.setLeft(y.getLeft());
+        x.setLeft(y.getRight());
         if(y.getRight().isLeaf())
             y.getRight().setParent(x);
         y.setParent(x.getParent());
         if(x.getParent().isLeaf())
             this.root=y;
-        else if(x==x.getParent().getRight())
+        else if(x.isRightChild())
             x.getParent().setRight(y);
         else
             x.getParent().setLeft(y);
         y.setRight(x);
         x.setParent(y);
     }
-    public void insert(int key)
+    public void insert(String key)
     {
         insert(new Node(key));
     }
@@ -110,7 +110,7 @@ public class RedBlackTree
         while (!x.isLeaf())
         {
             y=x;
-            if(z.key<x.key)
+            if(z.key.compareTo(x.key)<0)
                 x=x.getLeft();
             else
                 x=x.getRight();
@@ -118,7 +118,7 @@ public class RedBlackTree
         z.setParent(y);
         if(y.isLeaf())
             this.root=z;
-        else if(z.key<y.key)
+        else if(z.key.compareTo(y.key)<0)
             y.setLeft(z);
         else
             y.setRight(z);
@@ -176,7 +176,7 @@ public class RedBlackTree
         }//loop close
         this.root.setBlack();
     }//end method
-    public Node delete(int key)
+    public Node delete(String key)
     {
         Node x = search(key);
         if(x.notLeaf())

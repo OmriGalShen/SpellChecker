@@ -4,7 +4,7 @@ public class Node
     private Node parent,left,right;
     public enum Color{RED,BLACK}
     private Color color;
-    public int key;
+    public String key;
     private boolean isNull;
 
     public Node()
@@ -13,10 +13,10 @@ public class Node
         left=this;
         right=this;
         color = Color.BLACK;
-        this.key = -1;
+        this.key = "";
         this.isNull=true;
     }
-    public Node(int key){
+    public Node(String key){
         Node p = new Node();
         Node child = new Node();
         this.setRight(child);
