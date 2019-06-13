@@ -1,7 +1,6 @@
 import java.io.FileInputStream;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
+import java.util.HashSet;
 
 public class SpellChecker {
     public static void main(String[] args)
@@ -13,7 +12,7 @@ public class SpellChecker {
         FileInputStream inputFile = FileHelper.readTextFile("src\\InputFile.txt"); // read input file
         //inputFile = FileHelper.readTextFile("src\\Test.txt"); // option to use test input file
         //insert dictionary to hash table:
-        HashMap<String,Integer> dictMap = new HashMap<String, Integer>();// initialize hash table
+        HashSet<String> dictMap = new HashSet<String>();// initialize hash table
         FileHelper.insertFileToMap(dictFile,dictMap); // insert dictionary words to hash table
         //insert input text to red black tree:
         RedBlackTree<String> inputTree = new RedBlackTree<String>(); // initialize tree
@@ -24,18 +23,18 @@ public class SpellChecker {
         //printIncorrectWords(inputTree);
         printSuggestions(inputTree,dictMap); // option to see suggestion
     }
-    private static void deleteCorrectWords(RedBlackTree<String> tree, HashMap<String,Integer> dictMap)
+    private static void deleteCorrectWords(RedBlackTree<String> tree, HashSet<String> dictMap)
     {
          ArrayList<String> wordToDelete = new ArrayList<>();
         fillWordList(tree.getRoot(),wordToDelete,dictMap);
         for(String word : wordToDelete)
             tree.delete(word);
     }
-    private static void fillWordList(Node<String> p, ArrayList<String> wordList, HashMap<String,Integer> dictMap)
+    private static void fillWordList(Node<String> p, ArrayList<String> wordList, HashSet<String> dictMap)
     {
         if(p.notLeaf())
         {
-            if(dictMap.containsKey(p.key)) //current not contain word in the dictionary
+            if(dictMap.contains(p.key)) //current not contain word in the dictionary
             {
                 wordList.add(p.key);
             }
@@ -63,7 +62,7 @@ public class SpellChecker {
         }
         System.out.println();
     }
-    private static void printSuggestions(RedBlackTree<String> tree,HashMap<String,Integer> dictMap)
+    private static void printSuggestions(RedBlackTree<String> tree,HashSet<String> dictMap)
     {
         ArrayList<String> incorrectWords = tree.getListInOrder();
         if(incorrectWords.size()>0) {
@@ -87,11 +86,11 @@ public class SpellChecker {
         }
         System.out.println();
     }
-    private static String closestWord(String checkWord, HashMap<String,Integer> dictMap)
+    private static String closestWord(String checkWord, HashSet<String> dictMap)
     {
         double matchScore, bestMatchScore=Integer.MIN_VALUE;
         String bestMatch="";
-        for(String dictWord: dictMap.keySet())
+        for(String dictWord: dictMap)
         {
             matchScore=matchCalc(checkWord,dictWord);
             if(matchScore>bestMatchScore) // find match with better score
@@ -102,12 +101,12 @@ public class SpellChecker {
         }
         return bestMatch;
     }
-    private static String[] threeClosestWord(String checkWord, HashMap<String,Integer> dictMap)
+    private static String[] threeClosestWord(String checkWord, HashSet<String> dictMap)
     {
         String[] bestMatches = new String[3];
         double[] scores = new double[3];
         double matchScore=0;
-        for(String dictWord: dictMap.keySet())
+        for(String dictWord: dictMap)
         {
 //            matchScore=matchCalc(checkWord,dictWord);
             matchScore=Math.min(matchCalc(checkWord,dictWord),matchCalc(dictWord,checkWord));

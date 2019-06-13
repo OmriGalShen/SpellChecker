@@ -1,6 +1,7 @@
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
+import java.util.HashSet;
 import java.util.Scanner;
 import java.util.HashMap;
 public class FileHelper
@@ -51,7 +52,7 @@ public class FileHelper
             System.out.println("problem with reading file");
         }
     }
-    public static void insertFileToMap(FileInputStream file, HashMap<String,Integer> map)
+    public static void insertFileToMap(FileInputStream file, HashSet<String> map)
     {
         if(file==null) //problem with file
             return;
@@ -69,7 +70,6 @@ public class FileHelper
             //Read file Word by Word
             Scanner input=new Scanner(file);//help cut file to words
             String temp;
-            int counter = 0; // will be the values for every word in the hashmap
             //loop over the words
             while(input.hasNext())
             {
@@ -77,8 +77,7 @@ public class FileHelper
                 temp=fixWord(temp); //trim spaces and make lower case
                 if(temp.length()>0)
                 {
-                    map.put(temp,counter);
-                    counter++;
+                    map.add(temp);
                 }
             }
 
