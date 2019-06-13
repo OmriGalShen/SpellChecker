@@ -9,7 +9,7 @@ public class SpellChecker {
         FileInputStream dict = readTextFile("src\\DictionaryFile.txt"); //read dictionary file
         FileInputStream input = readTextFile("src\\InputFile.txt");
 //        FileInputStream input = readTextFile("src\\Test.txt");
-        RedBlackTree inputTree = new RedBlackTree(); // initialize tree
+        RedBlackTree<String> inputTree = new RedBlackTree<String>(); // initialize tree
         insertFileToTree(input,inputTree); // insert input words to tree
 
         System.out.println(inputTree.nodeCount());

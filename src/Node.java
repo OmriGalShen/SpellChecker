@@ -1,10 +1,10 @@
-public class Node
+public class Node<T extends Comparable>
 {
     //Node variables
     private Node parent,left,right;
     public enum Color{RED,BLACK}
     private Color color;
-    public String key;
+    public T key;
     private boolean isNull;
 
     public Node()
@@ -13,10 +13,10 @@ public class Node
         left=this;
         right=this;
         color = Color.BLACK;
-        this.key = "";
+        this.key = null;
         this.isNull=true;
     }
-    public Node(String key){
+    public Node(T key){
         Node p = new Node();
         Node child = new Node();
         this.setRight(child);
@@ -31,7 +31,7 @@ public class Node
         this.left=other.left;
         this.right=other.right;
         this.color=other.color;
-        this.key=other.key;
+        this.key=(T)other.key;
         this.isNull=other.isNull;
     }
 

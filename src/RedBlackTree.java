@@ -1,6 +1,7 @@
-public class RedBlackTree
+public class RedBlackTree<T extends Comparable>
 {
     //Tree variables
+
     private Node root;
     //
     public RedBlackTree()
@@ -11,11 +12,11 @@ public class RedBlackTree
     {
         this.root=root;
     }
-    public Node search(String key)
+    public Node search(T key)
     {
         return search(this.root,key);
     }
-    private Node search(Node x, String key)
+    private Node search(Node<T> x, T key)
     {
         if(x.isLeaf() || x.key.equals(key))
             return x;
@@ -99,7 +100,7 @@ public class RedBlackTree
         y.setRight(x);
         x.setParent(y);
     }
-    public void insert(String key)
+    public void insert(T key)
     {
         insert(new Node(key));
     }
@@ -176,7 +177,7 @@ public class RedBlackTree
         }//loop close
         this.root.setBlack();
     }//end method
-    public Node delete(String key)
+    public Node delete(T key)
     {
         Node x = search(key);
         if(x.notLeaf())
@@ -300,6 +301,13 @@ public class RedBlackTree
             System.out.println(x);
             printInOrder(x.getRight());
         }
+    }
+    public Node getRoot() {
+        return root;
+    }
+
+    public void setRoot(Node root) {
+        this.root = root;
     }
 }
 
