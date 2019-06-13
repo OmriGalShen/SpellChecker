@@ -12,7 +12,7 @@ public class SpellChecker {
         //dictFile = FileHelper.readTextFile("src\\BasicDictionaryFile.txt"); //you can use this basic dictionary file instead
         //get input file
         FileInputStream inputFile = FileHelper.readTextFile("src\\InputFile.txt"); // read input file
-        //inputFile = FileHelper.readTextFile("src\\Test.txt"); // you can use test text instead
+        inputFile = FileHelper.readTextFile("src\\Test.txt"); // you can use test text instead
         //insert dictionary to hash table
         HashMap<String,Integer> dictMap = new HashMap<String, Integer>();// initialize hash table
         FileHelper.insertFileToMap(dictFile,dictMap); // insert dictionary words to hash table
