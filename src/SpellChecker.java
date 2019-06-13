@@ -1,4 +1,5 @@
 import java.io.FileInputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class SpellChecker {
@@ -17,11 +18,11 @@ public class SpellChecker {
         FileHelper.insertFileToTree(inputFile,inputTree); // insert input words to tree
         //
         deleteCorrectWords(inputTree,dictMap);
-        inputTree.printInOrder();
+        printTree(inputTree);
     }
     public static void deleteCorrectWords(RedBlackTree<String> tree, HashMap<String,Integer> dictMap)
     {
-         deleteCorrectWords(tree.getRoot(),tree,dictMap);
+         deleteCorrectWords(tree.getRoot(),tree,dictMap);//call recursive function
     }
     private static void deleteCorrectWords(Node<String> p, RedBlackTree<String> tree, HashMap<String,Integer> dictMap)
     {
@@ -31,8 +32,20 @@ public class SpellChecker {
             {
                 tree.delete(p); // delete correct word from tree
             }
-            deleteCorrectWords(p.getLeft(),tree,dictMap);
-            deleteCorrectWords(p.getRight(),tree,dictMap);
+            deleteCorrectWords(p.getLeft(),tree,dictMap);//left sub tree
+            deleteCorrectWords(p.getRight(),tree,dictMap);// right sub tree
         }
+    }
+    private static void printTree(RedBlackTree<String> tree)
+    {
+        ArrayList<String> incorrectWords = tree.getListInOrder();
+        System.out.println();
+        System.out.println("Suspicious words:");
+        for (int i = 0; i <incorrectWords.size()-1 ; i++) {
+            System.out.print(incorrectWords.get(i)+", ");
+        }
+        System.out.print(incorrectWords.get(incorrectWords.size()-1));
+        System.out.println();
+
     }
 }

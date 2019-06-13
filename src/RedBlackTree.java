@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class RedBlackTree<T extends Comparable>
 {
     //Tree variables
@@ -24,7 +26,7 @@ public class RedBlackTree<T extends Comparable>
     {
         return getMinNode(this.root);
     }
-    private Node<T>getMinNode(Node<T>x)
+    private Node<T>getMinNode(Node<T> x)
     {
         while (x.getLeft().notLeaf())
             x=x.getLeft();
@@ -34,13 +36,13 @@ public class RedBlackTree<T extends Comparable>
     {
         return getMaxNode(this.root);
     }
-    private Node<T>getMaxNode(Node<T>x)
+    private Node<T>getMaxNode(Node<T> x)
     {
         while (x.getRight().notLeaf())
             x=x.getRight();
         return x;
     }
-    public Node<T>getSuccessor(Node<T>x)
+    public Node<T>getSuccessor(Node<T> x)
     {
         if(x.getRight().notLeaf())
             return getMinNode(x.getRight());
@@ -51,7 +53,7 @@ public class RedBlackTree<T extends Comparable>
         }
         return y;
     }
-    public Node<T>getPredecessor(Node<T>x)
+    public Node<T>getPredecessor(Node<T> x)
     {
         if(!x.getLeft().isLeaf())
             return getMaxNode(x.getLeft());
@@ -62,7 +64,7 @@ public class RedBlackTree<T extends Comparable>
         }
         return y;
     }
-    private void leftRotate(Node<T>x)
+    private void leftRotate(Node<T> x)
     {
         Node<T>y = x.getRight();
         x.setRight(y.getLeft());
@@ -80,7 +82,7 @@ public class RedBlackTree<T extends Comparable>
         y.setLeft(x);
         x.setParent(y);
     }
-    private void rightRotate(Node<T>x)
+    private void rightRotate(Node<T> x)
     {
         Node<T>y = x.getLeft();
         x.setLeft(y.getRight());
@@ -100,7 +102,7 @@ public class RedBlackTree<T extends Comparable>
     {
         insert(new Node<T>(key));
     }
-    public void insert(Node<T>z)
+    public void insert(Node<T> z)
     {
         Node<T>y = new Node();
         Node<T>x = this.root;
@@ -124,7 +126,7 @@ public class RedBlackTree<T extends Comparable>
         z.setRed();
         insertFixer(z);
     }
-    private void insertFixer(Node<T>z)
+    private void insertFixer(Node<T> z)
     {
         while (z.getParent().isRed())//overall loop
         {
@@ -205,7 +207,7 @@ public class RedBlackTree<T extends Comparable>
             deleteFixer(x);
         return y;
     }
-    private void deleteFixer(Node<T>x)
+    private void deleteFixer(Node<T> x)
     {
         while (x.notLeaf() && x.isBlack())
         {// main loop
@@ -279,7 +281,7 @@ public class RedBlackTree<T extends Comparable>
     {
         return nodeCount(this.root,0);
     }
-    private int nodeCount(Node<T>x, int count)
+    private int nodeCount(Node<T> x, int count)
     {
         if(x.isLeaf())
             return count;
@@ -289,20 +291,35 @@ public class RedBlackTree<T extends Comparable>
     {
         printInOrder(this.root);
     }
-    private void printInOrder(Node<T>x)
+    private void printInOrder(Node<T> x)
     {
-        if(!x.isLeaf())
+        if(x.notLeaf())
         {
             printInOrder(x.getLeft());
-            System.out.println(x);
+            System.out.print(x);
             printInOrder(x.getRight());
+        }
+    }
+    public ArrayList<T> getListInOrder()
+    {
+        ArrayList<T> list = new ArrayList<>(); // initialize list of values to return
+        getArrayInOrder(this.root, list); //use recursive function for in order travers
+        return list;
+    }
+    private void getArrayInOrder(Node<T> x, ArrayList<T> list)
+    {
+        if(x.notLeaf())
+        {
+            getArrayInOrder(x.getLeft(),list);
+            list.add(x.key);
+            getArrayInOrder(x.getRight(),list);
         }
     }
     public Node<T>getRoot() {
         return root;
     }
 
-    public void setRoot(Node<T>root) {
+    public void setRoot(Node<T> root) {
         this.root = root;
     }
 }
