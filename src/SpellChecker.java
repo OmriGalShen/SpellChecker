@@ -7,10 +7,12 @@ public class SpellChecker {
     public static void main(String[] args)
     {
         //get text files
+        //get dictionary file
         FileInputStream dictFile = FileHelper.readTextFile("src\\DictionaryFile.txt"); //read dictionary file
+        //dictFile = FileHelper.readTextFile("src\\BasicDictionaryFile.txt"); //you can use this basic dictionary file instead
+        //get input file
         FileInputStream inputFile = FileHelper.readTextFile("src\\InputFile.txt"); // read input file
-        // you can use test text file:
-//        FileInputStream inputFile = FileHelper.readTextFile("src\\Test.txt"); // read input file
+        //inputFile = FileHelper.readTextFile("src\\Test.txt"); // you can use test text instead
         //insert dictionary to hash table
         HashMap<String,Integer> dictMap = new HashMap<String, Integer>();// initialize hash table
         FileHelper.insertFileToMap(dictFile,dictMap); // insert dictionary words to hash table
@@ -53,7 +55,7 @@ public class SpellChecker {
                 if(i>0)
                     System.out.print(", ");
                 temp=incorrectWords.get(i);
-                System.out.print(temp + " ("+closestWord(temp,dictMap)+")");
+                System.out.print(temp + " ("+closestWord(temp,dictMap)+"?)");
             }
         }
         else
@@ -80,17 +82,17 @@ public class SpellChecker {
     private static int matchCalc(String s1,
                           String s2)
     {
-        int matchPoints = 0;
-        char temp;
-        int diff=0;
+        int matchPoints = 0,temp,diff;
+        int matchFactor = 3;
+        int diffFactor = 2;
         for (int i = 0; i < s1.length(); i++)
         {
             temp=s1.charAt(i);
             if(s2.indexOf(temp)>=0)
             {
-                matchPoints+=3;
+                matchPoints+=matchFactor;
                 diff = Math.abs(i-s2.indexOf(temp));
-                matchPoints-=diff*2;
+                matchPoints-=diff*diffFactor;
             }
         }
         matchPoints-=Math.abs(s1.length()-s2.length());
