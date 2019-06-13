@@ -108,8 +108,7 @@ public class SpellChecker {
         }
         return bestMatches;
     }
-    private static double matchCalc(String s1,
-                          String s2)
+    private static double matchCalc(String s1, String s2)
     {
         double matchPoints = 0;
         int temp,diff;

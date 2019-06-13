@@ -1,4 +1,4 @@
-Computer science is the studdy of processses that interact with data and that can be represented
-as data in the formm of proggrams It enables the use of algorithms to manipulate
-stor and communicate digital information A computer scientist studies the theory
-of compuation and the practice of designing software systems
+Computer sciense is the study of processes that interact with datta and that can be represented as data in the form of programs.
+It enables the use of algorithms to manipulate, store,
+and communicate diggital informmation.
+A conputer scientist studdies the theoory of computation and the practice of designing softwar systems

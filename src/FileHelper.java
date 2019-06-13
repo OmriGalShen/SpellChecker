@@ -92,6 +92,8 @@ public class FileHelper
     }
     private static String fixWord(String str)
     {
-        return str.trim().toLowerCase();
+        String result = str.replaceAll("[-+.^:,\")(]","");
+        result = result.toLowerCase().trim();
+        return result;
     }
 }
