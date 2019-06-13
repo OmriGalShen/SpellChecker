@@ -12,7 +12,7 @@ public class SpellChecker {
         //dictFile = FileHelper.readTextFile("src\\BasicDictionaryFile.txt"); //you can use this basic dictionary file instead
         //get input file
         FileInputStream inputFile = FileHelper.readTextFile("src\\InputFile.txt"); // read input file
-        inputFile = FileHelper.readTextFile("src\\Test.txt"); // you can use test text instead
+        //inputFile = FileHelper.readTextFile("src\\Test.txt"); // you can use test text instead
         //insert dictionary to hash table
         HashMap<String,Integer> dictMap = new HashMap<String, Integer>();// initialize hash table
         FileHelper.insertFileToMap(dictFile,dictMap); // insert dictionary words to hash table
@@ -89,7 +89,8 @@ public class SpellChecker {
         double matchScore=0;
         for(String dictWord: dictMap.keySet())
         {
-            matchScore=matchCalc(checkWord,dictWord);
+//            matchScore=matchCalc(checkWord,dictWord);
+            matchScore=Math.min(matchCalc(checkWord,dictWord),matchCalc(dictWord,checkWord));
             if(matchScore>scores[0])
             {
                 scores[0]=matchScore;
@@ -113,7 +114,7 @@ public class SpellChecker {
         double matchPoints = 0;
         int temp,diff;
         double matchFactor = 5;
-        double diffFactor = 1;
+        double diffFactor = 2;
         for (int i = 0; i < s1.length(); i++)
         {
             temp=s1.charAt(i);
