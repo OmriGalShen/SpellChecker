@@ -7,8 +7,8 @@ public class SpellChecker {
     {
         //get text files
         FileInputStream dictFile = FileHelper.readTextFile("src\\DictionaryFile.txt"); //read dictionary file
-//        FileInputStream inputFile = FileHelper.readTextFile("src\\InputFile.txt"); // read input file
-        FileInputStream inputFile = FileHelper.readTextFile("src\\Test.txt"); // read input file
+        FileInputStream inputFile = FileHelper.readTextFile("src\\InputFile.txt"); // read input file
+//        FileInputStream inputFile = FileHelper.readTextFile("src\\Test.txt"); // read input file
         //insert dictionary to hash table
         HashMap<String,Integer> dictMap = new HashMap<String, Integer>();// initialize hash table
         FileHelper.insertFileToMap(dictFile,dictMap); // insert dictionary words to hash table
@@ -19,29 +19,24 @@ public class SpellChecker {
         deleteCorrectWords(inputTree,dictMap);
         //print list of suspicious words
         printIncorrectWords(inputTree);
-
-//        System.out.println("'him' in tree: "+inputTree.search("him").notLeaf());
-//        System.out.println("'the' in map: "+dictMap.containsKey("him"));
-//        inputTree.delete("him");
-//        System.out.println("'him' in tree: "+inputTree.search("him").notLeaf());
-
     }
     private static void deleteCorrectWords(RedBlackTree<String> tree, HashMap<String,Integer> dictMap)
     {
-         deleteCorrectWords(tree.getRoot(),tree,dictMap);//call recursive function
+         ArrayList<String> wordToDelete = new ArrayList<>();
+        fillWordList(tree.getRoot(),wordToDelete,dictMap);
+        for(String word : wordToDelete)
+            tree.delete(word);
     }
-    private static void deleteCorrectWords(Node<String> p, RedBlackTree<String> tree, HashMap<String,Integer> dictMap)
+    private static void fillWordList(Node<String> p, ArrayList<String> wordList, HashMap<String,Integer> dictMap)
     {
         if(p.notLeaf())
         {
             if(dictMap.containsKey(p.key)) //current not contain word in the dictionary
             {
-                tree.delete(p); // delete correct word from tree
-//                tree.delete("him");
-//                System.out.println("him deleted");
+                wordList.add(p.key);
             }
-            deleteCorrectWords(p.getLeft(),tree,dictMap);//left sub tree
-            deleteCorrectWords(p.getRight(),tree,dictMap);// right sub tree
+            fillWordList(p.getLeft(),wordList,dictMap);//left sub tree
+            fillWordList(p.getRight(),wordList,dictMap);// right sub tree
         }
     }
     private static void printIncorrectWords(RedBlackTree<String> tree)
@@ -60,6 +55,5 @@ public class SpellChecker {
             System.out.println("Spelling seems ok");
         }
         System.out.println();
-
     }
 }
