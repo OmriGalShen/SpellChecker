@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="fe1964f6-2bdc-4822-b645-96a178f178a6" name="Default Changelist" comment="tweaked suggestions">
-      <change afterPath="$PROJECT_DIR$/src/DictTable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="fe1964f6-2bdc-4822-b645-96a178f178a6" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/MyHashtable.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Task_15/DictionaryFile.txt" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Task_15/DictionaryFile.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Task_15/Hashtable.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Task_15/SpellChecker.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Task_15/SpellChecker.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Task_15/Test.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DictionaryFile.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/DictionaryFile.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/FileHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FileHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Hashtable.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SpellChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SpellChecker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Test.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/CutomInput.txt" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -18,41 +26,18 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/SpellChecker.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="260">
-              <caret line="132" column="31" selection-start-line="132" selection-start-column="31" selection-end-line="132" selection-end-column="31" />
+            <state relative-caret-position="130">
+              <caret line="5" column="24" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="n#!!doc" expanded="true" />
+                <element signature="e#192#193#0" expanded="true" />
+                <element signature="e#220#221#0" expanded="true" />
+                <element signature="e#858#866#0" expanded="true" />
+                <element signature="e#1078#1086#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/BasicDictionaryFile.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="780">
-              <caret line="30" column="3" lean-forward="true" selection-start-line="30" selection-start-column="3" selection-end-line="30" selection-end-column="3" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/DictionaryFile.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="10848">
-              <caret line="7422" column="8" lean-forward="true" selection-start-line="7422" selection-start-column="8" selection-end-line="7422" selection-end-column="8" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/DictTable.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="572">
-              <caret line="22" column="34" selection-start-line="22" selection-start-column="34" selection-end-line="22" selection-end-column="34" />
             </state>
           </provider>
         </entry>
@@ -60,11 +45,22 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/FileHelper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="832">
-              <caret line="79" column="34" selection-start-line="79" selection-start-column="34" selection-end-line="79" selection-end-column="34" />
+            <state relative-caret-position="1170">
+              <caret line="50" column="25" selection-start-line="50" selection-start-column="25" selection-end-line="50" selection-end-column="25" />
               <folding>
-                <element signature="method#readTextFile#0;class#FileHelper#0" />
                 <element signature="method#insertFileToTree#0;class#FileHelper#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/MyHashtable.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="364">
+              <caret line="109" column="5" selection-start-line="109" selection-start-column="5" selection-end-line="109" selection-end-column="5" />
+              <folding>
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -90,6 +86,7 @@
       <find>processWord</find>
       <find>had</find>
       <find>car</find>
+      <find>closestWord</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -108,10 +105,12 @@
         <option value="$PROJECT_DIR$/src/RedBlackTree.java" />
         <option value="$PROJECT_DIR$/src/BasicDictionaryFile.txt" />
         <option value="$PROJECT_DIR$/src/Test.txt" />
-        <option value="$PROJECT_DIR$/src/SpellChecker.java" />
-        <option value="$PROJECT_DIR$/src/FileHelper.java" />
         <option value="$PROJECT_DIR$/src/DirectHashTable.java" />
         <option value="$PROJECT_DIR$/src/DictTable.java" />
+        <option value="$PROJECT_DIR$/src/FileHelper.java" />
+        <option value="$PROJECT_DIR$/src/Hashtable.java" />
+        <option value="$PROJECT_DIR$/src/MyHashtable.java" />
+        <option value="$PROJECT_DIR$/src/SpellChecker.java" />
       </list>
     </option>
   </component>
@@ -236,9 +235,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1096" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.13859275" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13859275" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Learn" order="3" />
@@ -262,6 +260,31 @@
       <window_info anchor="right" id="Maven" order="4" />
       <window_info anchor="right" id="Palette&#9;" order="5" />
     </layout>
+    <layout-to-restore>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.13859275" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Designer" order="2" />
+      <window_info id="Learn" order="3" />
+      <window_info id="UI Designer" order="4" />
+      <window_info id="Favorites" order="5" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32910052" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32910052" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.34920636" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Terminal" order="7" weight="0.32910052" />
+      <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
+      <window_info anchor="bottom" id="Version Control" order="9" weight="0.32910052" />
+      <window_info anchor="bottom" id="Messages" order="10" weight="0.32910052" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Maven" order="4" />
+      <window_info anchor="right" id="Palette&#9;" order="5" />
+    </layout-to-restore>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -381,14 +404,11 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Hashtable.java">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/DictionaryFile.txt" />
     <entry file="file://$PROJECT_DIR$/src/RedBlackTree.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2055">
-          <caret line="326" selection-start-line="326" selection-end-line="326" />
+        <state relative-caret-position="317">
+          <caret line="318" selection-start-line="318" selection-end-line="318" />
           <folding>
             <element signature="e#163#164#0" expanded="true" />
             <element signature="e#202#203#0" expanded="true" />
@@ -404,7 +424,6 @@
             <element signature="e#8335#8336#0" expanded="true" />
             <element signature="e#8558#8559#0" expanded="true" />
             <element signature="e#8597#8598#0" expanded="true" />
-            <element signature="e#9327#9328#0" expanded="true" />
             <element signature="e#9354#9355#0" expanded="true" />
             <element signature="e#9395#9396#0" expanded="true" />
             <element signature="e#9427#9428#0" expanded="true" />
@@ -414,8 +433,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Node.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="26">
-          <caret line="76" selection-start-line="76" selection-end-line="76" />
+        <state relative-caret-position="184">
+          <caret line="95" selection-start-line="95" selection-end-line="95" />
           <folding>
             <element signature="e#903#904#0" expanded="true" />
             <element signature="e#942#943#0" expanded="true" />
@@ -429,7 +448,6 @@
             <element signature="e#1383#1384#0" expanded="true" />
             <element signature="e#1775#1776#0" expanded="true" />
             <element signature="e#1803#1804#0" expanded="true" />
-            <element signature="e#1944#1945#0" expanded="true" />
             <element signature="e#1979#1980#0" expanded="true" />
             <element signature="n#!!block;n#isRightChild#0;n#Node#0" />
             <element signature="n#!!block;n#isLeftChild#0;n#Node#0" />
@@ -438,14 +456,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/InputFIle.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="52">
-          <caret line="2" column="7" lean-forward="true" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Test.txt">
+    <entry file="file://$PROJECT_DIR$/src/CutomInput.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="2" selection-start-column="2" selection-end-column="2" />
@@ -459,34 +470,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/SpellChecker.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="132" column="31" selection-start-line="132" selection-start-column="31" selection-end-line="132" selection-end-column="31" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/FileHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="832">
-          <caret line="79" column="34" selection-start-line="79" selection-start-column="34" selection-end-line="79" selection-end-column="34" />
-          <folding>
-            <element signature="method#readTextFile#0;class#FileHelper#0" />
-            <element signature="method#insertFileToTree#0;class#FileHelper#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/DirectHashTable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="52">
-          <caret line="2" selection-start-line="2" selection-end-line="2" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/DirectHashTable.java" />
     <entry file="file://$PROJECT_DIR$/src/BasicDictionaryFile.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="780">
@@ -505,6 +489,54 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="572">
           <caret line="22" column="34" selection-start-line="22" selection-start-column="34" selection-end-line="22" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/Programs/Java/lib/src.zip!/java.base/java/lang/Integer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4410">
+          <caret line="651" column="48" selection-start-line="651" selection-start-column="48" selection-end-line="651" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/InputFIle.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="52">
+          <caret line="2" column="7" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/FileHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1170">
+          <caret line="50" column="25" selection-start-line="50" selection-start-column="25" selection-end-line="50" selection-end-column="25" />
+          <folding>
+            <element signature="method#insertFileToTree#0;class#FileHelper#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MyHashtable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="364">
+          <caret line="109" column="5" selection-start-line="109" selection-start-column="5" selection-end-line="109" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SpellChecker.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="130">
+          <caret line="5" column="24" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#192#193#0" expanded="true" />
+            <element signature="e#220#221#0" expanded="true" />
+            <element signature="e#858#866#0" expanded="true" />
+            <element signature="e#1078#1086#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -1,4 +1,0 @@
-Computer sciense is the study of processes that interact with datta and that can be represented as data in the form of programs.
-It enables the use of algorithms to manipulate, store,
-and communicate diggital informmation.
-A conputer scientist studdies the theoory of computation and the practice of designing softwar systems

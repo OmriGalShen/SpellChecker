@@ -1,46 +1,128 @@
+/**
+ * This is the main class of the project
+ */
+
 import java.io.FileInputStream;
 import java.util.ArrayList;
-import java.util.HashSet;
 
 public class SpellChecker {
+    /**
+     *
+     * @param args
+     */
     public static void main(String[] args)
+    {
+        spellCheck();
+    }
+    public static void spellCheck()
     {
         //get dictionary file:
         FileInputStream dictFile = FileHelper.readTextFile("src\\DictionaryFile.txt"); //read dictionary file
         //dictFile = FileHelper.readTextFile("src\\BasicDictionaryFile.txt"); //option to use basic dictionary file instead
         //get input file:
         FileInputStream inputFile = FileHelper.readTextFile("src\\InputFile.txt"); // read input file
-        //inputFile = FileHelper.readTextFile("src\\Test.txt"); // option to use test input file
+        inputFile = FileHelper.readTextFile("src\\CutomInput.txt"); // option to use custom input file
         //insert dictionary to hash table:
-        HashSet<String> dictMap = new HashSet<String>();// initialize hash table
-        FileHelper.insertFileToMap(dictFile,dictMap); // insert dictionary words to hash table
+        MyHashtable<String> dictTable = new MyHashtable<String>(60000);
+        FileHelper.insertFileToTable(dictFile,dictTable); // insert dictionary words to hash table
         //insert input text to red black tree:
         RedBlackTree<String> inputTree = new RedBlackTree<String>(); // initialize tree
         FileHelper.insertFileToTree(inputFile,inputTree); // insert input words to tree
         // delete words in dictionary from the input tree
-        deleteCorrectWords(inputTree,dictMap);
-        //print list of suspicious words
+        deleteCorrectWords(inputTree,dictTable);
+        //print list of suspicious words:
         //printIncorrectWords(inputTree);
-        printSuggestions(inputTree,dictMap); // option to see suggestion
+        printSuggestions(inputTree,dictTable); // option to see suggestion
     }
-    private static void deleteCorrectWords(RedBlackTree<String> tree, HashSet<String> dictMap)
+    private static void deleteCorrectWords(RedBlackTree<String> tree, MyHashtable<String> dictTable)
     {
-         ArrayList<String> wordToDelete = new ArrayList<>();
-        fillWordList(tree.getRoot(),wordToDelete,dictMap);
+        ArrayList<String> wordToDelete = new ArrayList<>();
+        fillWordList(tree.getRoot(),wordToDelete,dictTable);
         for(String word : wordToDelete)
             tree.delete(word);
     }
-    private static void fillWordList(Node<String> p, ArrayList<String> wordList, HashSet<String> dictMap)
+    private static void fillWordList(Node<String> p, ArrayList<String> wordList, MyHashtable<String> dictTable)
     {
         if(p.notLeaf())
         {
-            if(dictMap.contains(p.key)) //current not contain word in the dictionary
+            if(dictTable.contains(p.key)) //current not contain word in the dictionary
             {
                 wordList.add(p.key);
             }
-            fillWordList(p.getLeft(),wordList,dictMap);//left sub tree
-            fillWordList(p.getRight(),wordList,dictMap);// right sub tree
+            fillWordList(p.getLeft(),wordList,dictTable);//left sub tree
+            fillWordList(p.getRight(),wordList,dictTable);// right sub tree
         }
+    }
+    private static String closestWord(String checkWord, MyHashtable<String> dictTable)
+    {
+        double matchScore, bestMatchScore=Integer.MIN_VALUE;
+        String bestMatch="";
+        String dictWord;
+        dictTable.initIterator();
+        while (dictTable.hasNext())
+        {
+            dictWord = dictTable.next();
+            matchScore=matchCalc(checkWord,dictWord);
+            if(matchScore>bestMatchScore) // find match with better score
+            {
+                bestMatchScore=matchScore;
+                bestMatch=dictWord;
+            }
+        }
+        return bestMatch;
+    }
+    private static void printSuggestions(RedBlackTree<String> tree,MyHashtable<String> dictTable)
+    {
+        ArrayList<String> incorrectWords = tree.getListInOrder();
+        if(incorrectWords.size()>0) {
+            System.out.println("Suspicious words:");
+            String temp;
+            for (int i = 0; i < incorrectWords.size(); i++)
+            {
+                temp=incorrectWords.get(i);
+                //option 1: print 1 suggestion
+//                if(i>0)
+//                    System.out.print(", ");
+//                System.out.print(temp + " ("+closestWord(temp,dictMap)+"?)");
+                //option 1: print 3 suggestions
+                String[] closestWords = threeClosestWord(temp,dictTable);
+                System.out.println(temp + "? ("+closestWords[0]+","+closestWords[1]+","+closestWords[2]+")");
+            }
+        }
+        else
+        {
+            System.out.println("Spelling seems ok");
+        }
+        System.out.println();
+    }
+    private static String[] threeClosestWord(String checkWord, MyHashtable<String> dictTable)
+    {
+        String[] bestMatches = new String[3];
+        double[] scores = new double[3];
+        double matchScore=0;
+        dictTable.initIterator();
+        String dictWord;
+        while (dictTable.hasNext())
+        {
+            dictWord = dictTable.next();
+            matchScore=Math.min(matchCalc(checkWord,dictWord),matchCalc(dictWord,checkWord));
+            if(matchScore>scores[0])
+            {
+                scores[0]=matchScore;
+                bestMatches[0]=dictWord;
+            }
+            else if(matchScore>scores[1])
+            {
+                scores[1]=matchScore;
+                bestMatches[1]=dictWord;
+            }
+            else if(matchScore>scores[2])
+            {
+                scores[2]=matchScore;
+                bestMatches[2]=dictWord;
+            }
+        }
+        return bestMatches;
     }
     private static void printIncorrectWords(RedBlackTree<String> tree)
     {
@@ -61,72 +143,6 @@ public class SpellChecker {
             System.out.println("Spelling seems ok");
         }
         System.out.println();
-    }
-    private static void printSuggestions(RedBlackTree<String> tree,HashSet<String> dictMap)
-    {
-        ArrayList<String> incorrectWords = tree.getListInOrder();
-        if(incorrectWords.size()>0) {
-            System.out.println("Suspicious words:");
-            String temp;
-            for (int i = 0; i < incorrectWords.size(); i++)
-            {
-                temp=incorrectWords.get(i);
-                //option 1: print 1 suggestion
-//                if(i>0)
-//                    System.out.print(", ");
-//                System.out.print(temp + " ("+closestWord(temp,dictMap)+"?)");
-                //option 1: print 3 suggestions
-                String[] closestWords = threeClosestWord(temp,dictMap);
-                System.out.println(temp + "? ("+closestWords[0]+","+closestWords[1]+","+closestWords[2]+")");
-            }
-        }
-        else
-        {
-            System.out.println("Spelling seems ok");
-        }
-        System.out.println();
-    }
-    private static String closestWord(String checkWord, HashSet<String> dictMap)
-    {
-        double matchScore, bestMatchScore=Integer.MIN_VALUE;
-        String bestMatch="";
-        for(String dictWord: dictMap)
-        {
-            matchScore=matchCalc(checkWord,dictWord);
-            if(matchScore>bestMatchScore) // find match with better score
-            {
-                bestMatchScore=matchScore;
-                bestMatch=dictWord;
-            }
-        }
-        return bestMatch;
-    }
-    private static String[] threeClosestWord(String checkWord, HashSet<String> dictMap)
-    {
-        String[] bestMatches = new String[3];
-        double[] scores = new double[3];
-        double matchScore=0;
-        for(String dictWord: dictMap)
-        {
-//            matchScore=matchCalc(checkWord,dictWord);
-            matchScore=Math.min(matchCalc(checkWord,dictWord),matchCalc(dictWord,checkWord));
-            if(matchScore>scores[0])
-            {
-                scores[0]=matchScore;
-                bestMatches[0]=dictWord;
-            }
-            else if(matchScore>scores[1])
-            {
-                scores[1]=matchScore;
-                bestMatches[1]=dictWord;
-            }
-            else if(matchScore>scores[2])
-            {
-                scores[2]=matchScore;
-                bestMatches[2]=dictWord;
-            }
-        }
-        return bestMatches;
     }
     private static double matchCalc(String s1, String s2)
     {
