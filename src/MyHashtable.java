@@ -1,3 +1,10 @@
+/**
+ * Name : Omri Gal Shenhav
+ * Contact Info: shenhav.omri@gmail.com
+ * id: 318230844
+ * This is my implementation of chained hashtable.
+ */
+
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -8,9 +15,7 @@ public class MyHashtable<T> implements Iterator<T>
     private int size;
 
     private int currentBucket=-1;
-    private int previousBucket=-1;
     private HashNode currentNode =null;
-    private HashNode previousNode =null;
 
     private static class HashNode<T> {
         T key;
@@ -109,16 +114,11 @@ public class MyHashtable<T> implements Iterator<T>
     public void initIterator()
     {
         this.currentBucket=-1;
-        this.previousBucket=-1;
         this.currentNode =null;
-        this.previousNode =null;
     }
 
     @Override
     public T next() {
-        previousNode = currentNode;
-        previousBucket = currentBucket;
-
         // if either the current or next node are null
         if (currentNode == null || currentNode.next == null) {
 

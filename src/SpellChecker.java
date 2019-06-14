@@ -1,4 +1,7 @@
 /**
+ * Name : Omri Gal Shenhav
+ * Contact Info: shenhav.omri@gmail.com
+ * id: 318230844
  * This is the main class of the project
  */
 

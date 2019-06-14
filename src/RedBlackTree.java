@@ -1,3 +1,17 @@
+/**
+ * Name : Omri Gal Shenhav
+ * Contact Info: shenhav.omri@gmail.com
+ * id: 318230844
+ * This is my implementation of a generic red black tree.
+ * The keys used are generic, but they have to implement Comparable Interface.
+ * (because binary search tree relay on comparable keys)
+ * Examples of appropriate objects to use as keys: String,Integer, Double ..
+ * This project uses the String implementation relaying on the compareTo
+ * method to compare two string in order to place in the tree.
+ * This implementation fully relying on the text book implementation
+ * while using minor changes.
+ */
+
 import java.util.ArrayList;
 
 public class RedBlackTree<T extends Comparable>
