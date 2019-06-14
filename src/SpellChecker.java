@@ -9,10 +9,6 @@ import java.io.FileInputStream;
 import java.util.ArrayList;
 
 public class SpellChecker {
-    /**
-     *
-     * @param args
-     */
     public static void main(String[] args)
     {
         spellCheck();
@@ -35,7 +31,7 @@ public class SpellChecker {
         deleteCorrectWords(inputTree,dictTable);
         //print list of suspicious words:
         //printIncorrectWords(inputTree);
-        printSuggestions(inputTree,dictTable); // option to see suggestion
+        printSuggestions(inputTree,dictTable,true); // option to see suggestion
     }
     private static void deleteCorrectWords(RedBlackTree<String> tree, MyHashtable<String> dictTable)
     {
@@ -74,7 +70,7 @@ public class SpellChecker {
         }
         return bestMatch;
     }
-    private static void printSuggestions(RedBlackTree<String> tree,MyHashtable<String> dictTable)
+    private static void printSuggestions(RedBlackTree<String> tree,MyHashtable<String> dictTable, boolean isMultiple)
     {
         ArrayList<String> incorrectWords = tree.getListInOrder();
         if(incorrectWords.size()>0) {
@@ -83,13 +79,17 @@ public class SpellChecker {
             for (int i = 0; i < incorrectWords.size(); i++)
             {
                 temp=incorrectWords.get(i);
-                //option 1: print 1 suggestion
-//                if(i>0)
-//                    System.out.print(", ");
-//                System.out.print(temp + " ("+closestWord(temp,dictMap)+"?)");
-                //option 1: print 3 suggestions
-                String[] closestWords = threeClosestWord(temp,dictTable);
-                System.out.println(temp + "? ("+closestWords[0]+","+closestWords[1]+","+closestWords[2]+")");
+                if(isMultiple) // display top three fix suggestions
+                {
+                    String[] closestWords = threeClosestWord(temp,dictTable);
+                    System.out.println(temp + "? ("+closestWords[0]+","+closestWords[1]+","+closestWords[2]+")");
+                }
+                else // display one fix suggestion
+                {
+                    if (i > 0)
+                        System.out.print(", ");
+                    System.out.print(temp + " (" + closestWord(temp, dictTable) + "?)");
+                }
             }
         }
         else
