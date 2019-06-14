@@ -47,43 +47,94 @@ public class RedBlackTree<T extends Comparable>
             else
                 x=x.getRight();
         }
+        //at this point other node is found and in stored in x
+        //or x hold null node
         return x;
     }
-    public Node<T>getMinNode()
+
+    /**
+     * return a node with minimum key value in the tree.
+     * If there isn't any node (which isn't null) return a null node
+     * based on : page 217
+     * time complexity : O(lg n)
+     * @return a node with minimum key value.
+     */
+    public Node<T> getMinNode()
     {
-        return getMinNode(this.root);
+        return getMinNode(this.root); // uses a recursive method on the root
     }
-    private Node<T>getMinNode(Node<T> x)
+
+    /**
+     * return a node with minimum key value in the sub-tree.
+     * If there isn't any node (which isn't null) value return a null node.
+     *      * based on : page 217
+     * time complexity : O(lg n)
+     * @param x ref to subtree tree root node
+     * @return a node with minimum key value.
+     */
+    public Node<T>getMinNode(Node<T> x)
     {
-        while (x.getLeft().notLeaf())
+        while (x.getLeft().notLeaf()) //there is a left subtree
             x=x.getLeft();
         return x;
     }
+    /**
+     * return a node with maximum key value in the tree.
+     * If there isn't any node (which isn't null) return a null node
+     * based on : page 217
+     * time complexity : O(lg n)
+     * @return a node with maximum key value.
+     */
     public Node<T>getMaxNode()
     {
-        return getMaxNode(this.root);
+        return getMaxNode(this.root);// uses a recursive method on the root
     }
-    private Node<T>getMaxNode(Node<T> x)
+    /**
+     * return a node with maximum key value in the sub-tree.
+     * If there isn't any node (which isn't null) return a null node.
+     * based on : page 217
+     * time complexity : O(lg n)
+     * @param x ref to subtree tree root node
+     * @return a node with maximum key value.
+     */
+    private Node<T> getMaxNode(Node<T> x)
     {
-        while (x.getRight().notLeaf())
+        while (x.getRight().notLeaf()) //there is a right sub tree
             x=x.getRight();
         return x;
     }
+
+    /**
+     * return a node with key value consecutive key value.
+     * If there isn't any node with consecutive key value return a null node
+     * based on : page 218
+     * time complexity : O(lg n)
+     * @return a node with consecutive key value.
+     */
     public Node<T>getSuccessor(Node<T> x)
     {
-        if(x.getRight().notLeaf())
-            return getMinNode(x.getRight());
-        Node<T>y = x.getParent();
-        while (y.notLeaf() && x==y.getRight()){
+        if(x.getRight().notLeaf()) //there is a right sub tree
+            return getMinNode(x.getRight()); //minimum in right sub tree
+        Node<T> y = x.getParent();
+        while (y.notLeaf() && x==y.getRight())
+        {
             x=y;
             y=y.getParent();
         }
         return y;
     }
-    public Node<T>getPredecessor(Node<T> x)
+
+    /**
+     * return a node with key value preceding key value.
+     * If there isn't any node with preceding key value return a null node
+     * based on : page 218
+     * time complexity : O(lg n)
+     * @return a node with preceding key value.
+     */
+    public Node<T> getPredecessor (Node<T> x)
     {
-        if(!x.getLeft().isLeaf())
-            return getMaxNode(x.getLeft());
+        if(!x.getLeft().isLeaf()) // there is a left sub tree
+            return getMaxNode(x.getLeft()); // maximum in left sub tree
         Node<T>y = x.getParent();
         while (y.notLeaf() && x==y.getLeft()){
             x=y;
@@ -91,6 +142,13 @@ public class RedBlackTree<T extends Comparable>
         }
         return y;
     }
+
+    /**
+     * rotate left based on given node
+     * based on : page 234
+     * time complexity : O(1)
+     * @param x node to rotate from
+     */
     private void leftRotate(Node<T> x)
     {
         Node<T>y = x.getRight();
@@ -109,6 +167,13 @@ public class RedBlackTree<T extends Comparable>
         y.setLeft(x);
         x.setParent(y);
     }
+
+    /**
+     * rotate right based on given node
+     * based on : page 234
+     * time complexity : O(1)
+     * @param x node to rotate from
+     */
     private void rightRotate(Node<T> x)
     {
         Node<T>y = x.getLeft();
@@ -125,6 +190,11 @@ public class RedBlackTree<T extends Comparable>
         y.setRight(x);
         x.setParent(y);
     }
+
+    /**
+     * Create a node with given key and insert it to the tree
+     * @param key value of new node inserted to tree
+     */
     public void insert(T key)
     {
         insert(new Node<T>(key));
@@ -342,12 +412,13 @@ public class RedBlackTree<T extends Comparable>
             getArrayInOrder(x.getRight(),list);
         }
     }
+
+    /**
+     * return a reference to the root node of the tree
+     * @return return a reference to the root node of the tree
+     */
     public Node<T>getRoot() {
         return root;
-    }
-
-    public void setRoot(Node<T> root) {
-        this.root = root;
     }
 }
 
