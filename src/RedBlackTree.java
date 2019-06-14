@@ -33,32 +33,21 @@ public class RedBlackTree<T extends Comparable>
      * Search for node with given key.
      * First node found will be returned (direct ref)
      * If no node was found return a null node.
+     * based on : page 216
      * time complexity : O(lg n)
-     * @return first node found with given key
+     * @return a node with given key if found, null node otherwise
      */
     public Node<T> search(T key)
     {
-        return search(this.root,key); // use private recursive method
-    }
-
-    /**
-     * Use for implementing the search using recursive callings.
-     * Search for node with given key.
-     * First node found will be returned (direct ref)
-     * If no node was found return a null node.
-     * based on : page 216
-     * time complexity : O(lg n)
-     * @param x ref to the tree root
-     * @param key value for node search for
-     * @return a node with given key if found, null node otherwise
-     */
-    private Node<T> search(Node<T> x, T key)
-    {
-        if(x.isLeaf() || x.key.equals(key))
-            return x; //if node was found return it, if no node found return null node
-        if(key.compareTo(x.key)<0) //uses the compareTo of the key object to determent position of node
-            return search(x.getLeft(),key);
-        return search(x.getRight(),key);
+        Node<T> x = this.root;
+        while (x.notLeaf() && !x.key.equals(key))
+        {
+            if(key.compareTo(x.key)<0)
+                x=x.getLeft();
+            else
+                x=x.getRight();
+        }
+        return x;
     }
     public Node<T>getMinNode()
     {
