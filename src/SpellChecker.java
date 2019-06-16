@@ -24,12 +24,13 @@
 
 import java.io.FileInputStream;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class SpellChecker
 {
+    private static Scanner scan = new Scanner(System.in);//used to get user inputs
     /**
-     * This is the main function. In here it is define which text files to use
-     * as input and dictionary.
+     * This is the main function.
      * Based on the given dictionary and input text
      * displays words which are suspicious of being incorrectly typed.
      * the program displays words which are suspicious of being incorrectly typed.
@@ -37,13 +38,80 @@ public class SpellChecker
      */
     public static void main(String[] args)
     {
-        String dictionary = "src\\DictionaryFile.txt"; //dictionary with 6133 english words
-        String basicDict = "src\\BasicDictionaryFile.txt"; //option to use basic dictionary file instead
-        String input = "src\\InputFile.txt"; //input file with text given in the assignment
-        String customInput = "src\\CustomInput.txt"; // option to use custom input file
-        spellCheck(dictionary,input);
+        welcome();
+        String input = getUserInput();
+        String dictionary = getUserDictionary();
+        boolean suggestions = getSuggestions();
+        spellCheck(dictionary,input,suggestions);
     }
 
+    /**
+     * Welcome text to user
+     */
+    public static void welcome()
+    {
+        System.out.println("Hello, this is my project for task 15.");
+        System.out.println("Name of student: Omri Gal Shenhav");
+        System.out.println("Id: 318230844");
+        System.out.println("Email: shenhav.omri@gmail.com");
+        System.out.println("Please press enter to continue");
+        scan.nextLine();
+        clearScreen();
+    }
+
+    /**
+     * Let user choose input file
+     * @return A string representing the location of the chosen input file
+     */
+    public static String getUserInput()
+    {
+        String input = "src\\InputFile.txt"; //input file with text given in the assignment
+        System.out.println("Please choose input file");
+        System.out.println("1. default - recommended");
+        System.out.println("2. custom");
+        int action = scan.nextInt();
+        if(action==2)
+            input = "src\\CustomInput.txt"; // option to use custom input file
+        clearScreen();
+        return input;
+    }
+
+    /**
+     * Let user choose dictionary
+     * @return A string representing the location of the chosen dictionary file
+     */
+    public static String getUserDictionary()
+    {
+        String dictionary = "src\\DictionaryFile.txt"; //dictionary with 6133 english words
+        System.out.println("Please choose dictionary");
+        System.out.println("1. Large (61,133 words) - recommended");
+        System.out.println("2. basic (60 words)");
+        int action = scan.nextInt();
+        if(action==2)
+            dictionary = "src\\BasicDictionaryFile.txt"; //option to use basic dictionary file instead
+        clearScreen();
+        return dictionary;
+    }
+    /**
+     * Let user choose to see words suggestions or no.
+     * @return return true if user wants suggestions or false otherwise
+     */
+    public static boolean getSuggestions()
+    {
+        boolean suggestions = true;
+        System.out.println("Please choose to see suggestions");
+        System.out.println("1. yes - recommended");
+        System.out.println("2. no ");
+        int action = scan.nextInt();
+        if(action==2)
+            suggestions = false;
+        clearScreen();
+        return suggestions;
+    }
+    public static void clearScreen()
+    {
+        for (int i = 0; i < 50; ++i) System.out.println();
+    }
     /**
      * Based on the given dictionary and input text
      * displays words which are suspicious of being incorrectly typed.
@@ -52,7 +120,7 @@ public class SpellChecker
      * @param dictInput A string describing relative file location of the dictionary file
      * @param textInput A string describing relative file location of the input file
      */
-    public static void spellCheck(String dictInput, String textInput)
+    public static void spellCheck(String dictInput, String textInput,boolean suggestions)
     {
         //get dictionary file:
         FileInputStream dictFile = FileHelper.readTextFile(dictInput); //O(1)
@@ -70,8 +138,10 @@ public class SpellChecker
         //list of words left in the tree
         ArrayList<String> incorrectWords = inputTree.getListInOrder();//O(n)
         //print list of suspicious words:
-        //printIncorrectWords(incorrectWords); //O(n)
-        printSuggestions(incorrectWords,dictTable,true); // option to see suggestion O(n*k*l)
+        if(suggestions)
+            printSuggestions(incorrectWords,dictTable,true); // option to see suggestion O(n*k*l)
+        else
+            printIncorrectWords(incorrectWords); //O(n)
     }
 
     /**
