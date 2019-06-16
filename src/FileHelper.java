@@ -50,7 +50,7 @@ public class FileHelper
             while(input.hasNext())
             {
                 temp=input.next(); // current word in file
-                temp=fixWord(temp,false); //trim spaces and make lower case
+                temp=fixWord(temp,true); //trim spaces and make lower case
                 if(temp.length()>0)
                 {
                     table.insert(temp);
@@ -85,7 +85,7 @@ public class FileHelper
             while(input.hasNext())
             {
                 temp=input.next();// current word in file
-                temp=fixWord(temp,false); //trim spaces and make lower case
+                temp=fixWord(temp,true); //trim spaces and make lower case
                 if(temp.length()>0) //word is valid
                     tree.insert(temp); //insert word in tree O(n)
             }
