@@ -34,7 +34,7 @@ public class FileHelper
      * Given text file, word by word (Separated by spaces)
      * insert given string words to MyHashtable.
      * @param file Text file to read words from
-     * time complexity : O(k), where k is the number of words in text file
+     * Time complexity : O(k), where k is the number of words in text file
      * @param table The table to insert words to.
      */
     public static void insertFileToTable(FileInputStream file, MyHashtable<String> table)
@@ -69,7 +69,7 @@ public class FileHelper
     /**
      * Given text file, word by word (Separated by spaces)
      * insert given string words to red black tree.
-     * time complexity : O(k), where k is the number of words in text file
+     * time complexity : O(nlgn), where n is the number of words in text file
      * @param file Text file to read words from.
      * @param tree The tree to insert words to.
      */
@@ -87,7 +87,7 @@ public class FileHelper
                 temp=input.next();// current word in file
                 temp=fixWord(temp,false); //trim spaces and make lower case
                 if(temp.length()>0) //word is valid
-                    tree.insert(temp); //insert word in tree
+                    tree.insert(temp); //insert word in tree O(n)
             }
 
             //Close the input stream

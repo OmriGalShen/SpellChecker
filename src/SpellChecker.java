@@ -1,9 +1,22 @@
 /**
+ * Task: 15
  * Name : Omri Gal Shenhav
  * Contact Info: shenhav.omri@gmail.com
  * id: 318230844
+ * Time: June 2019
  * This is the main class of the project.
  * Run this file to start the project.
+ * This project will use my implementation of red black tree (based on the text book)
+ * and my implementation of an chain based hash table (see pages 189-192)
+ * Let k= number of words in dictionary,
+ * n=number of words in the input file,
+ * l = longest word in both the dictionary file and input file.
+ * Our time analysis will be based on the usage of the dictionary file
+ * having k=16200 words (more or less). The hashtable will be initialize with size k
+ * and so insert,delete and contain will be O(1) as detailed in text book.
+ * with usage of of smaller dictionary file those action will also take O(1).
+ * Important to note I implemented a suggestion of correct words using my own custom
+ * score system of closeness of words (as this is not well defined enough).
  */
 
 import java.io.FileInputStream;
@@ -12,11 +25,12 @@ import java.util.ArrayList;
 public class SpellChecker
 {
     /**
-     * This is the main function. gets the chooses the text files:
-     * input and dictionary, and calls the spellCheck function.
-     * Based on the chosen dictionary and input text
+     * This is the main function. In here it is define which text files to use
+     * as input and dictionary.
+     * Based on the given dictionary and input text
+     * displays words which are suspicious of being incorrectly typed.
      * the program displays words which are suspicious of being incorrectly typed.
-     * @param args
+     * @param args default main argument
      */
     public static void main(String[] args)
     {
@@ -30,47 +44,52 @@ public class SpellChecker
     /**
      * Based on the given dictionary and input text
      * displays words which are suspicious of being incorrectly typed.
+     * Time complexity without suggestions: O(n*lgn+k)
+     * Time complexity with suggestions: O(n*k*l + k + n*lgn)
      * @param dictInput A string describing relative file location of the dictionary file
      * @param textInput A string describing relative file location of the input file
      */
     public static void spellCheck(String dictInput, String textInput)
     {
         //get dictionary file:
-        FileInputStream dictFile = FileHelper.readTextFile(dictInput); //read dictionary file
+        FileInputStream dictFile = FileHelper.readTextFile(dictInput); //O(1)
         //get input file:
-        FileInputStream inputFile = FileHelper.readTextFile(textInput); // read input file
+        FileInputStream inputFile = FileHelper.readTextFile(textInput); // O(1)
         //initiate table with capacity close to the number of words in the dictionary
         MyHashtable<String> dictTable = new MyHashtable<String>(62000);
-        FileHelper.insertFileToTable(dictFile,dictTable); // insert dictionary words to hash table
+        // insert dictionary words to hash table
+        FileHelper.insertFileToTable(dictFile,dictTable);  //O(k)
         //insert input text to red black tree:
         RedBlackTree<String> inputTree = new RedBlackTree<String>(); // initialize tree
-        FileHelper.insertFileToTree(inputFile,inputTree); // insert input words to tree
+        FileHelper.insertFileToTree(inputFile,inputTree); // insert input words to tree O(n*lgn)
         // delete words in dictionary from the input tree
-        deleteCorrectWords(inputTree,dictTable);
-        ArrayList<String> incorrectWords = inputTree.getListInOrder();
+        deleteCorrectWords(inputTree,dictTable); // O(n)
+        //list of words left in the tree
+        ArrayList<String> incorrectWords = inputTree.getListInOrder();//O(n)
         //print list of suspicious words:
-        //printIncorrectWords(incorrectWords);
-        printSuggestions(incorrectWords,dictTable,true); // option to see suggestion
+        //printIncorrectWords(incorrectWords); //O(n)
+        printSuggestions(incorrectWords,dictTable,true); // option to see suggestion O(n*k*l)
     }
 
     /**
      * Delete words in the dictionary table from the tree.
-     * time complexity : O(n) where n is the number of words in the tree
+     * Time complexity : O(n)
+     * (number of words in the input file)
      * @param tree The tree to delete words from
      * @param dictTable The dictionary table
      */
     private static void deleteCorrectWords(RedBlackTree<String> tree, MyHashtable<String> dictTable)
     {
-        ArrayList<String> wordToDelete = new ArrayList<>();//list of correct words in the tree
-        treeToList(tree.getRoot(),wordToDelete,dictTable);//get correct words
-        for(String word : wordToDelete)
-            tree.delete(word);//delete every incorrect words
+        ArrayList<String> wordToDelete = new ArrayList<>();//initiate list of correct words in the tree
+        treeToList(tree.getRoot(),wordToDelete,dictTable);//update list with correct words O(n)
+        for(String word : wordToDelete) // O(n)
+            tree.delete(word);//delete every incorrect words from the tree
     }
 
     /**
      * Given reference to a tree root node, empty string list and a dictionary table
      * Add to the list, words in the tree which are also in the dictionary.
-     * time complexity : O(n) where n is the number of words in the tree
+     * time complexity : O(n)
      * @param p A reference to the tree root node
      * @param wordList An initialized list of strings
      * @param dictTable The dictionary table
@@ -91,15 +110,16 @@ public class SpellChecker
     /**
      * Given a list with suspicious words print them
      * Without suggestions.
-     * Time complexity : O(l), where l number of incorrect words in the input
+     * Time complexity : O(n)
      * @param incorrectWords list of incorrect words
      */
     private static void printIncorrectWords(ArrayList<String> incorrectWords)
     {
-        if(incorrectWords.size()>0) {
+        if(incorrectWords.size()>0)
+        {
             System.out.println("Suspicious words:");
             String temp;
-            for (int i = 0; i < incorrectWords.size(); i++)
+            for (int i = 0; i < incorrectWords.size(); i++) // O(n)
             {
                 temp=incorrectWords.get(i);
                 if(i>0)
@@ -118,28 +138,30 @@ public class SpellChecker
      * Print a list of Suspicious words in the input tree
      * Based on the given boolean, if false Can display one word suggestion
      * Or if true display 3 words suggestions.
+     * Time complexity : O(n*k*l)
      * @param incorrectWords list of incorrect words
      * @param dictTable The dictionary table
      * @param isMultiple if true display 3 word suggestions and one word otherwise
      */
     private static void printSuggestions(ArrayList<String> incorrectWords,MyHashtable<String> dictTable, boolean isMultiple)
     {
-        if(incorrectWords.size()>0) {
+        if(incorrectWords.size()>0)
+        {
             System.out.println("Suspicious words:");
             String temp;
-            for (int i = 0; i < incorrectWords.size(); i++)
+            for (int i = 0; i < incorrectWords.size(); i++) //O(n) loops
             {
                 temp=incorrectWords.get(i);
                 if(isMultiple) // display top three fix suggestions
                 {
-                    String[] closestWords = threeClosestWord(temp,dictTable);
+                    String[] closestWords = threeClosestWord(temp,dictTable); //O(k*l)
                     System.out.println(temp + "? ("+closestWords[0]+","+closestWords[1]+","+closestWords[2]+")");
                 }
                 else // display one fix suggestion
                 {
                     if (i > 0)
                         System.out.print(", ");
-                    System.out.print(temp + " (" + closestWord(temp, dictTable) + "?)");
+                    System.out.print(temp + " (" + closestWord(temp, dictTable) + "?)"); //O(k*l)
                 }
             }
         }
@@ -155,7 +177,7 @@ public class SpellChecker
      * in the dictionary based on custom scoring system.
      * This is a specif implementation meaning the closeness of the words
      * is calculated with spastic ideas in mind and it isn't universally determent.
-     * time complexity : O(k) where n is the number of words in the tree
+     * time complexity : O(k*l)
      * @param checkWord The word to check
      * @param dictTable The dictionary table
      * @return A close word in the dictionary based on custom rating system
@@ -164,9 +186,9 @@ public class SpellChecker
     {
         double matchScore, bestMatchScore=Integer.MIN_VALUE;
         String bestMatch="";
-        for (String dictWord : dictTable)
+        for (String dictWord : dictTable) // O(k) loops
         {
-            matchScore=matchCalc(checkWord,dictWord);
+            matchScore=matchCalc(checkWord,dictWord); // O(l)
             if(matchScore>bestMatchScore) // find match with better score
             {
                 bestMatchScore=matchScore;
@@ -181,7 +203,7 @@ public class SpellChecker
      * in the dictionary based on custom scoring system.
      * This is a specif implementation meaning the closeness of the words
      * is calculated with spastic ideas in mind and it isn't universally determent.
-     * time complexity : O(k) where n is the number of words in the dictionary
+     * Time complexity : O(k*l)
      * @param checkWord The word to check
      * @param dictTable The dictionary table
      * @return An array size 3 with the 3 suggested words
@@ -190,11 +212,12 @@ public class SpellChecker
     {
         String[] bestMatches = new String[3];
         double[] scores = new double[3];
-        double matchScore=0;
-        for (String dictWord : dictTable)//goes throughout all words in dictionary
+        double matchScore;
+        //goes throughout all words in dictionary
+        for (String dictWord : dictTable) // O(k) loops
         {
             //consider both the "closeness of check word to dict word and dict word to check word
-            matchScore=Math.min(matchCalc(checkWord,dictWord),matchCalc(dictWord,checkWord));
+            matchScore=Math.min(matchCalc(checkWord,dictWord),matchCalc(dictWord,checkWord)); //O(l)
             if(matchScore>scores[0])//First highest match score
             {
                 scores[0]=matchScore;
@@ -216,7 +239,7 @@ public class SpellChecker
 
     /**
      * Calculate a custom value representing the closeness of two words.
-     * Time complexity : O(l), where l is the max{s1.length,s2.length}
+     * Time complexity : O(l)
      * @param s1 The first word to check
      * @param s2 The second word to check
      * @return A custom value representing the closeness of two words.
