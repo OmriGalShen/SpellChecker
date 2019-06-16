@@ -7,7 +7,6 @@
  */
 
 import java.util.Iterator;
-import java.util.NoSuchElementException;
 
 public class MyHashtable<T> implements Iterator<T>
 {
@@ -20,15 +19,14 @@ public class MyHashtable<T> implements Iterator<T>
     private static class HashNode<T>
     {
         T key;
-        HashNode next;
+        HashNode<T> next;
     }
 
-    private HashNode[] table; //The hash table
+    private HashNode<T>[] table; //The hash table
 
     private int size; //the of values inserted to the hashtable
-    private int currentBucket=-1; //used to keep track of current index of hashtable in order to iterate over the hashtable.
-
-    private HashNode currentNode =null;//used to keep track of current node in order to iterate over the hashtable.
+    private int currentElement =-1; //used to keep track of current index of hashtable in order to iterate over the table.
+    private HashNode<T> currentNode =null;//used to keep track of current node in order to iterate over the table element.
 
     /**
      * The constructor for MyHashtable object.
@@ -40,6 +38,15 @@ public class MyHashtable<T> implements Iterator<T>
     {
         this.size = 0; //initiate size
         table = new HashNode[capacity]; // initiate the array
+    }
+
+    /**
+     * Getter for the number of object in the table
+     * @return The number of object in the table
+     */
+    public int getSize()
+    {
+        return size;
     }
 
     /**
@@ -57,129 +64,174 @@ public class MyHashtable<T> implements Iterator<T>
 
     /**
      * Insert an object to the the hashtable
-     * time complexity : O(1)
-     * @param obj
-     * @return
+     * Best time complexity: O(1)
+     * Average time complexity : O(1)
+     * Worst time complexity : O(n), where n is number of objects in the table
+     * @param obj Reference to the object to insert to the table
+     * @return True if object inserted, false otherwise (if object already in table)
      */
     public boolean insert(T obj)
     {
-
+        // using the object hashCode refine a index in table:
         int index = hashRefine(obj.hashCode());
         HashNode current = table[index];
 
-        while (current != null) {
-            // obj is already in set
-            if (current.key.equals(obj)) { return false; }
-            // otherwise visit next hashNode in the bucket
+        while (current != null)
+        {
+            if (current.key.equals(obj))  // obj is already in table
+            {
+                return false;
+            }
+            // otherwise visit next hashNode in the table cell
             current = current.next;
         }
         // no obj found so insert new hashNode
         HashNode hashNode = new HashNode();
         hashNode.key = obj;
-        // current HashNode is null if bucket is empty
-        // if it is not null it becomes next HashNode
+        // set the new node as head of the list
         hashNode.next  = table[index];
         table[index] = hashNode;
-        size++;
+        size++;// new object was added to the table
         return true;
     }
-    public boolean remove(Object element) {
 
-        int index = hashRefine(element.hashCode());
-        HashNode current = table[index];
+    /**
+     * Remove an object from the table
+     * Best time complexity: O(1)
+     * Average time complexity : O(1)
+     * Worst time complexity : O(n), where n is number of objects in the table
+     * @param obj The object to remove from the table
+     * @return True if object removed from table, false otherwise (was't found).
+     */
+    public boolean remove(T obj)
+    {
+        // using the object hashCode refine a index in table:
+        int index = hashRefine(obj.hashCode());
+        HashNode current = table[index]; //ref to the head of the list
         HashNode previous = null;
 
-        while (current != null) {
-            // element found so remove it
-            if (current.key.equals(element)) {
-
-                if (previous == null) {
-                    table[index] = current.next;
-                } else {
-                    previous.next = current.next;
+        while (current != null)
+        {
+            if (current.key.equals(obj)) // obj found
+            {
+                //using previous ref remove obj from list
+                if (previous == null)
+                {
+                    table[index] = current.next; // set new list head
                 }
-                size--;
+                else {
+                    previous.next = current.next;//"pass over" the object
+                }
+                size--;// a object was remove from the table
                 return true;
             }
-
             previous = current;
             current = current.next;
         }
-        // no element found nothing to remove
-        return false;
-    }
-    public boolean contains(Object element) {
-
-        int index = hashRefine(element.hashCode());
-        HashNode current = table[index];
-
-        while (current != null) {
-            // check if node contains element
-            if (current.key.equals(element)) { return true; }
-            // otherwise visit next node in the bucket
-            current = current.next;
-        }
-        // no element found
-        return false;
-    }
-    public int getSize() {
-        return size;
+        return false; // obj not found, nothing to remove
     }
 
-    @Override
-    public boolean hasNext() {
-        // currentNode node has next
-        if (currentNode != null && currentNode.next != null) { return true; }
+    /**
+     * Return true if object is in the table, false otherwise.
+     * Best time complexity: O(1)
+     * Average time complexity : O(1)
+     * Worst time complexity : O(n), where n is number of objects in the table
+     * @param object The object to check if in the table
+     * @return True if object is in the table, false otherwise.
+     */
+    public boolean contains(T object)
+    {
+        // using the object hashCode refine a index in table:
+        int index = hashRefine(object.hashCode());
+        HashNode current = table[index]; //ref to the head of the list
 
-        // there are still nodes
-        for (int index = currentBucket+1; index < table.length; index++) {
-            if (table[index] != null) { return true; }
+        while (current != null)
+        {
+            if (current.key.equals(object)) // check if node contains object
+            {
+                return true;
+            }
+            current = current.next; // otherwise visit next node in the list
         }
 
-        // nothing left
-        return false;
+        return false; // object not found
     }
 
+    /**
+     * Used to initiate values for iteration over the table.
+     * time complexity : O(1)
+     */
     public void initIterator()
     {
-        this.currentBucket=-1;
+        this.currentElement =-1;
         this.currentNode =null;
     }
 
+    /**
+     * Used to iterate over the table's objects.
+     * Return true if there is more object in the table to iterate over,
+     * return false otherwise.
+     * To initiate iterator use initIterator()
+     * To get the next object use next()
+     * Best time complexity: O(1)
+     * Worst time complexity : O(k) where k is the length of the table.
+     * @return true if there is more object in the table to iterate over, and false otherwise.
+     */
     @Override
-    public T next() {
+    public boolean hasNext()
+    {
+        // currentNode node has next
+        if (currentNode != null && currentNode.next != null) { return true; }
+        //check if there is a table element after current element, with nodes
+        for (int i = currentElement +1; i < table.length; i++)
+        {
+            if (table[i] != null)//found element with nodes
+                return true;
+        }
+        return false; //no next object to iterate over
+    }
+
+    /**
+     * Used to iterate over the table's objects.
+     * Return the next object in the iteration.
+     * If no such object exist return null.
+     * To initiate iterator use initIterator()
+     * To check if there is a next object use hasNext()
+     * Best time complexity: O(1)
+     * Worst time complexity : O(k) where k is the length of the table.
+     * @return The next object in the iteration
+     */
+    @Override
+    public T next()
+    {
         // if either the current or next node are null
-        if (currentNode == null || currentNode.next == null) {
+        if (currentNode == null || currentNode.next == null)
+        {
+            currentElement++;// go to next element in the table
 
-            // go to next bucket
-            currentBucket++;
-
-            // keep going until you find a bucket with a node
-            while (currentBucket < table.length &&
-                    table[currentBucket] == null) {
-                // go to next bucket
-                currentBucket++;
+            // looping until element with object found
+            while (currentElement < table.length &&
+                    table[currentElement] == null)
+            {
+                currentElement++; // go to next element in the table
             }
-
-            // if bucket array index still in bounds
-            // make it the current node
-            if (currentBucket < table.length) {
-                currentNode = table[currentBucket];
+            if (currentElement < table.length)
+            {
+                currentNode = table[currentElement];// update current node
             }
-            // otherwise there are no more elements
-            else {
-                throw new NoSuchElementException();
+            else // no object has been found
+            {
+                return null;
             }
         }
-        // go to the next element in bucket
-        else {
-
+        else //current element in table is ref an object
+        {
             currentNode = currentNode.next;
         }
-
-        // return the element in the current node
-        if(currentNode.key !=null)
-            return (T)currentNode.key;
+        if(currentNode.key !=null)// the new current element ref an obj
+        {
+            return currentNode.key;
+        }
         return null;
     }
 }
