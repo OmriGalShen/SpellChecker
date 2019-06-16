@@ -11,16 +11,18 @@ import java.util.ArrayList;
 public class SpellChecker {
     public static void main(String[] args)
     {
-        spellCheck();
+        String dictionary = "src\\DictionaryFile.txt";
+        String basicDict = "\"src\\\\BasicDictionaryFile.txt\""; //option to use basic dictionary file instead
+        String input = "src\\InputFile.txt";
+        String customInput = "src\\CutomInput.txt"; // option to use custom input file
+        spellCheck(dictionary,input);
     }
-    public static void spellCheck()
+    public static void spellCheck(String dictInput, String textInput)
     {
         //get dictionary file:
-        FileInputStream dictFile = FileHelper.readTextFile("src\\DictionaryFile.txt"); //read dictionary file
-        //dictFile = FileHelper.readTextFile("src\\BasicDictionaryFile.txt"); //option to use basic dictionary file instead
+        FileInputStream dictFile = FileHelper.readTextFile(dictInput); //read dictionary file
         //get input file:
-        FileInputStream inputFile = FileHelper.readTextFile("src\\InputFile.txt"); // read input file
-        inputFile = FileHelper.readTextFile("src\\CutomInput.txt"); // option to use custom input file
+        FileInputStream inputFile = FileHelper.readTextFile(textInput); // read input file
         //insert dictionary to hash table:
         MyHashtable<String> dictTable = new MyHashtable<String>(60000);
         FileHelper.insertFileToTable(dictFile,dictTable); // insert dictionary words to hash table
