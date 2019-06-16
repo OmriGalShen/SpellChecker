@@ -24,7 +24,7 @@ public class MyHashtable<T> implements Iterable<T>
 
     private HashNode<T>[] table; //The hash table
 
-    private int size; //the of values inserted to the hashtable
+    private int size; //number of objects in the table
 
 
     /**
