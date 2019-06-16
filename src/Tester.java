@@ -1,3 +1,6 @@
+/**
+ * This is just a tester class for the red black tree.
+ */
 public class Tester
 {
     public static void main(String[] args) {
