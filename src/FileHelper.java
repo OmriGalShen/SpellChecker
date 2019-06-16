@@ -2,7 +2,7 @@
  * Name : Omri Gal Shenhav
  * Contact Info: shenhav.omri@gmail.com
  * id: 318230844
- * This is class contain static function which help with
+ * This is class contain static functions which help with
  * working with the text files.
  */
 
