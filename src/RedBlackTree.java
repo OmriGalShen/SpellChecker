@@ -9,7 +9,7 @@
  * This project uses the String implementation relaying on the compareTo
  * method to compare two string in order to place in the tree.
  * This implementation fully relying on the text book implementation
- * while using minor changes.
+ * while using minor changes and additions.
  */
 
 import java.util.ArrayList;
@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class RedBlackTree<T extends Comparable>
 {
     //Tree variables
-    private Node<T>root; //root node accessible through getters and setters
+    private Node<T>root; //root node accessible through getter (can't be set externally)
     //
 
     /**
@@ -176,7 +176,7 @@ public class RedBlackTree<T extends Comparable>
      */
     private void rightRotate(Node<T> x)
     {
-        Node<T>y = x.getLeft();
+        Node<T> y = x.getLeft();
         x.setLeft(y.getRight());
         if(y.getRight().isLeaf())
             y.getRight().setParent(x);
@@ -193,12 +193,21 @@ public class RedBlackTree<T extends Comparable>
 
     /**
      * Create a node with given key and insert it to the tree
+     * based on : page 236
+     * time complexity : O(lg n)
      * @param key value of new node inserted to tree
      */
     public void insert(T key)
     {
-        insert(new Node<T>(key));
+        insert(new Node<T> (key));
     }
+
+    /**
+     * Insert given node to the tree
+     * based on : page 236
+     * time complexity : O(lg n)
+     * @param z The node ref to insert to the tree
+     */
     public void insert(Node<T> z)
     {
         Node<T>y = new Node();
@@ -223,6 +232,15 @@ public class RedBlackTree<T extends Comparable>
         z.setRed();
         insertFixer(z);
     }
+
+    /**
+     * After a node was inserted to the tree,
+     * This method fix the tree to accomplish the definition of
+     * Red black tree.
+     * based on : page 236
+     * time complexity : O(lg n)
+     * @param z The node inserted to the tree.
+     */
     private void insertFixer(Node<T> z)
     {
         while (z.getParent().isRed())//overall loop
@@ -272,16 +290,34 @@ public class RedBlackTree<T extends Comparable>
         }//loop close
         this.root.setBlack();
     }//end method
-    public Node<T>delete(T key)
+
+    /**
+     * Find a node with given key,
+     * If such node was found it will be deleted from the tree.
+     * If multiple nodes have this key the first one found will be deleted.
+     * If no such node was found the tree won't change.
+     * time complexity : O(lg n)
+     * @param key The key of node to be deleted from the tree.
+     * @return a reference to the removed node with given key. (or null node if not found)
+     */
+    public Node<T> delete(T key)
     {
-        Node<T>x = search(key);
+        Node<T> x = search(key);
         if(x.notLeaf())
-            return delete(x);
+            delete(x);
         return x;
     }
-    public Node<T>delete(Node<T>z)
+
+    /**
+     * Delete given node from the tree.
+     * based on : page 242
+     * time complexity : O(lg n)
+     * @param z The reference to the node that should be deleted
+     * @return A reference to the removed node.
+     */
+    public Node<T> delete(Node<T> z)
     {
-        Node<T>y;
+        Node<T> y;
         if(z.getLeft().isLeaf() || z.getRight().isLeaf())
             y=z;
         else
@@ -304,6 +340,15 @@ public class RedBlackTree<T extends Comparable>
             deleteFixer(x);
         return y;
     }
+
+    /**
+     * After a node was removed to the tree,
+     * This method fix the tree to accomplish the definition of
+     * Red black tree. This is a complementing method to the delete method.
+     * based on : page 243
+     * time complexity : O(lg n)
+     * @param x Either the only son of the removed node, or null node if the removed node didn't have sons.
+     */
     private void deleteFixer(Node<T> x)
     {
         while (x.notLeaf() && x.isBlack())
@@ -374,20 +419,49 @@ public class RedBlackTree<T extends Comparable>
         }//end main loop
         x.setBlack();
     }
+
+    /**
+     * Return the number of nodes in the tree. (not including the leafs)
+     * time complexity : O(n)
+     * @return the number of nodes in the tree. (not including the leafs)
+     */
     public int nodeCount()
     {
-        return nodeCount(this.root,0);
+        return nodeCount(this.root,0); //call a private recursive method
     }
+
+    /**
+     * Private method to implement the public method with the same name.
+     * Using recursive call traverse the tree (pre order) and return
+     * the number of nodes in the tree (not including the leafs).
+     * time complexity : O(n)
+     * @param x A reference to the root node
+     * @param count Should be 0 (the count start from this given parameter)
+     * @return the number of nodes in the tree. (not including the leafs)
+     */
     private int nodeCount(Node<T> x, int count)
     {
         if(x.isLeaf())
             return count;
         return 1+nodeCount(x.getLeft(),count)+nodeCount(x.getRight(),count);
     }
+
+    /**
+     * Print in order the tree.
+     * time complexity : O(n)
+     */
     public void printInOrder()
     {
-        printInOrder(this.root);
+        printInOrder(this.root); //call a private recursive method
     }
+
+    /**
+     * Private method to implement the public method with the same name.
+     * Print in order the tree.
+     * based on: page 214
+     * time complexity : O(n)
+     * @param x A reference to the tree's root node
+     */
     private void printInOrder(Node<T> x)
     {
         if(x.notLeaf())
@@ -397,12 +471,25 @@ public class RedBlackTree<T extends Comparable>
             printInOrder(x.getRight());
         }
     }
+
+    /**
+     * Return a in-order (sorted) array-list of the tree values.
+     * time complexity : O(n)
+     * @return Return a in-order (sorted) array-list of the tree values.
+     */
     public ArrayList<T> getListInOrder()
     {
         ArrayList<T> list = new ArrayList<>(); // initialize list of values to return
         getArrayInOrder(this.root, list); //use recursive function for in order travers
         return list;
     }
+
+    /**
+     * Fill given list with in-order values of the tree (sorted)
+     * time complexity : O(n)
+     * @param x A reference to the tree's root node
+     * @param list An initialized array-list
+     */
     private void getArrayInOrder(Node<T> x, ArrayList<T> list)
     {
         if(x.notLeaf())
