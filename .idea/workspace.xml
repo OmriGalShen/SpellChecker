@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="fe1964f6-2bdc-4822-b645-96a178f178a6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BasicDictionaryFile.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/BasicDictionaryFile.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FileHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FileHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MyHashtable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MyHashtable.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -21,89 +20,23 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/SpellChecker.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="182">
-              <caret line="7" column="22" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
+            <state>
+              <caret line="126" column="25" lean-forward="true" selection-start-line="126" selection-start-column="25" selection-end-line="126" selection-end-column="25" />
               <folding>
+                <element signature="n#!!doc" expanded="true" />
                 <element signature="imports" expanded="true" />
+                <element signature="e#3520#3521#0" expanded="true" />
+                <element signature="e#3585#3586#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/InputFIle.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="52">
-              <caret line="2" column="7" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/FileHelper.java">
+        <entry file="file://$PROJECT_DIR$/src/MyHashtable.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="361">
-              <caret line="52" column="38" selection-start-line="52" selection-start-column="38" selection-end-line="52" selection-end-column="38" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/RedBlackTree.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="780">
-              <caret line="36" column="7" selection-start-line="36" selection-start-column="7" selection-end-line="36" selection-end-column="32" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-                <element signature="docComment;method#RedBlackTree#0;class#RedBlackTree#0" />
-                <element signature="docComment;method#getMinNode#0;class#RedBlackTree#0" />
-                <element signature="method#getMinNode#1;class#RedBlackTree#0" />
-                <element signature="docComment;method#getMaxNode#0;class#RedBlackTree#0" />
-                <element signature="docComment;method#getMaxNode#1;class#RedBlackTree#0" />
-                <element signature="method#getMaxNode#1;class#RedBlackTree#0" />
-                <element signature="docComment;method#getSuccessor#0;class#RedBlackTree#0" />
-                <element signature="method#getSuccessor#0;class#RedBlackTree#0" />
-                <element signature="docComment;method#getPredecessor#0;class#RedBlackTree#0" />
-                <element signature="method#getPredecessor#0;class#RedBlackTree#0" />
-                <element signature="docComment;method#leftRotate#0;class#RedBlackTree#0" />
-                <element signature="method#leftRotate#0;class#RedBlackTree#0" />
-                <element signature="docComment;method#rightRotate#0;class#RedBlackTree#0" />
-                <element signature="method#rightRotate#0;class#RedBlackTree#0" />
-                <element signature="docComment;method#insert#0;class#RedBlackTree#0" />
-                <element signature="docComment;method#insert#1;class#RedBlackTree#0" />
-                <element signature="docComment;method#insertFixer#0;class#RedBlackTree#0" />
-                <element signature="method#insertFixer#0;class#RedBlackTree#0" />
-                <element signature="docComment;method#delete#0;class#RedBlackTree#0" />
-                <element signature="method#delete#0;class#RedBlackTree#0" />
-                <element signature="docComment;method#delete#1;class#RedBlackTree#0" />
-                <element signature="method#delete#1;class#RedBlackTree#0" />
-                <element signature="docComment;method#deleteFixer#0;class#RedBlackTree#0" />
-                <element signature="method#deleteFixer#0;class#RedBlackTree#0" />
-                <element signature="docComment;method#nodeCount#0;class#RedBlackTree#0" />
-                <element signature="docComment;method#nodeCount#1;class#RedBlackTree#0" />
-                <element signature="method#nodeCount#1;class#RedBlackTree#0" />
-                <element signature="docComment;method#printInOrder#0;class#RedBlackTree#0" />
-                <element signature="docComment;method#printInOrder#1;class#RedBlackTree#0" />
-                <element signature="method#printInOrder#1;class#RedBlackTree#0" />
-                <element signature="docComment;method#getListInOrder#0;class#RedBlackTree#0" />
-                <element signature="method#getListInOrder#0;class#RedBlackTree#0" />
-                <element signature="docComment;method#getArrayInOrder#0;class#RedBlackTree#0" />
-                <element signature="method#getArrayInOrder#0;class#RedBlackTree#0" />
-                <element signature="docComment;method#getRoot#0;class#RedBlackTree#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/BasicDictionaryFile.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1482">
-              <caret line="57" column="7" lean-forward="true" selection-start-line="57" selection-start-column="7" selection-end-line="57" selection-end-column="7" />
+            <state relative-caret-position="494">
+              <caret line="19" column="57" selection-start-line="19" selection-start-column="57" selection-end-line="19" selection-end-column="57" />
             </state>
           </provider>
         </entry>
@@ -132,6 +65,7 @@
       <find>previousNode</find>
       <find>fixWord</find>
       <find>printIncorrectWords</find>
+      <find>ArrayList</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -153,11 +87,11 @@
         <option value="$PROJECT_DIR$/src/Test.java" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/RedBlackTree.java" />
-        <option value="$PROJECT_DIR$/src/SpellChecker.java" />
-        <option value="$PROJECT_DIR$/src/MyHashtable.java" />
         <option value="$PROJECT_DIR$/src/Tester.java" />
         <option value="$PROJECT_DIR$/src/BasicDictionaryFile.txt" />
         <option value="$PROJECT_DIR$/src/FileHelper.java" />
+        <option value="$PROJECT_DIR$/src/SpellChecker.java" />
+        <option value="$PROJECT_DIR$/src/MyHashtable.java" />
       </list>
     </option>
   </component>
@@ -425,11 +359,26 @@
       <option name="project" value="LOCAL" />
       <updated>1560697939022</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="Made more readable">
+      <created>1560703090406</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1560703090406</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Added user input">
+      <created>1560707287628</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1560707287628</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1096" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1401919" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -447,7 +396,7 @@
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32910052" />
       <window_info anchor="bottom" id="Messages" order="9" weight="0.32910052" />
-      <window_info active="true" anchor="bottom" id="Run" order="10" visible="true" weight="0.32910052" />
+      <window_info anchor="bottom" id="Run" order="10" weight="0.63809526" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -536,7 +485,8 @@
     <MESSAGE value="made more readable" />
     <MESSAGE value="Fixed iterable of hashtable" />
     <MESSAGE value="Made more readable" />
-    <option name="LAST_COMMIT_MESSAGE" value="Made more readable" />
+    <MESSAGE value="Added user input" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added user input" />
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="breakpointCondition">
@@ -655,18 +605,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MyHashtable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4394">
-          <caret line="172" column="64" selection-start-line="172" selection-start-column="64" selection-end-line="172" selection-end-column="64" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="e#5900#5901#0" expanded="true" />
-            <element signature="e#5948#5949#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/RedBlackTree.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="780">
@@ -719,11 +657,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/SpellChecker.java">
+    <entry file="file://$PROJECT_DIR$/src/FileHelper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="7" column="22" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
+        <state relative-caret-position="361">
+          <caret line="52" column="38" selection-start-line="52" selection-start-column="38" selection-end-line="52" selection-end-column="38" />
           <folding>
+            <element signature="n#!!doc" expanded="true" />
             <element signature="imports" expanded="true" />
           </folding>
         </state>
@@ -736,14 +675,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/FileHelper.java">
+    <entry file="file://$PROJECT_DIR$/src/SpellChecker.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="52" column="38" selection-start-line="52" selection-start-column="38" selection-end-line="52" selection-end-column="38" />
+        <state>
+          <caret line="126" column="25" lean-forward="true" selection-start-line="126" selection-start-column="25" selection-end-line="126" selection-end-column="25" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="imports" expanded="true" />
+            <element signature="e#3520#3521#0" expanded="true" />
+            <element signature="e#3585#3586#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MyHashtable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="494">
+          <caret line="19" column="57" selection-start-line="19" selection-start-column="57" selection-end-line="19" selection-end-column="57" />
         </state>
       </provider>
     </entry>

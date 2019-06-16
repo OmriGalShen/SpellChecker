@@ -2,6 +2,7 @@
  * Name : Omri Gal Shenhav
  * Contact Info: shenhav.omri@gmail.com
  * id: 318230844
+ *
  * This is my implementation of very basic chained based hashtable.
  * This is a generic implementation, in which given object used as a value type.
  * This is based on the the text book (pages 189-192)
@@ -13,10 +14,11 @@
  * This project uses specifically String objects as values.
  * We will be using the hashCode of the String class in Java,
  * This function is very well implemented as so we will be make the assumption
- * at least for this project sake that the hash process is simple and uniform.
+ * at least for this project sake that the hash function is simple and uniform.
  *
  * By using the text book we can now say the complexity of failed search is O(1+a),
- * because we know the size of the dictionary we will set a to be 1 so we will get O(1).
+ * because we know the size of the dictionary in advance.
+ * we will set a (load factor) to be 1 so we will get O(1).
  *
  * Note: we will take the String hashCode and refined it to serve as a index in the table.
  */
@@ -72,46 +74,33 @@ public class MyHashtable<T> implements Iterable<T>
      */
     private int hashRefine(int hashCode)
     {
-        int index = Math.abs(hashCode);
-        return index % table.length;
+        int index = Math.abs(hashCode);//O(1)
+        return index % table.length;//O(1)
     }
 
     /**
      * Insert an object to the the hashtable
-     * Time complexity : same complexity of failed search O(1+a) (See page 191)
+     * Time complexity : O(1)
      * note : Assuming the hashCode of the object is "good"
      * @param obj Reference to the object to insert to the table
-     * @return True if object inserted, false otherwise (if object already in table)
      */
-    public boolean insert(T obj)
+    public void insert(T obj)
     {
         // using the object hashCode refine a index in table:
-        int index = hashRefine(obj.hashCode());
-        HashNode current = table[index];
-
-        while (current != null) // same complexity of failed search O(1+a)
-        {
-            if (current.key.equals(obj))  // obj is already in table
-            {
-                return false;
-            }
-            // otherwise visit next hashNode in the table cell
-            current = current.next;
-        }
-        // no obj found so insert new hashNode
-        HashNode<T> nodeToInsert = new HashNode<T>();
-        nodeToInsert.key = obj;
+        int index = hashRefine(obj.hashCode()); //O(1)
+        // initiate new node with obj as value
+        HashNode<T> nodeToInsert = new HashNode<T>();//O(1)
+        nodeToInsert.key = obj;//O(1)
         // set the new node as head of the list
-        nodeToInsert.next  = table[index];
-        table[index] = nodeToInsert;
+        nodeToInsert.next  = table[index];//O(1)
+        table[index] = nodeToInsert;//O(1)
         size++;// new object was added to the table
-        return true;
     }
 
     /**
      * Remove an object from the table
      * Time complexity : same complexity of failed search O(1+a) (See page 191)
-     * note : Assuming the hashCode of the object is "good"
+     * Note : Assuming the hashCode of the object is "good"
      * @param obj The object to remove from the table
      * @return True if object removed from table, false otherwise (was't found).
      */
