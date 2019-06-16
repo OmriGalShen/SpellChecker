@@ -69,6 +69,7 @@ public class SpellChecker
         System.out.println("Please choose input file");
         System.out.println("1. default - recommended");
         System.out.println("2. custom");
+        System.out.print("User input: ");
         int action = scan.nextInt();
         if(action==2)
             input = "src\\CustomInput.txt"; // option to use custom input file
@@ -86,6 +87,7 @@ public class SpellChecker
         System.out.println("Please choose dictionary");
         System.out.println("1. Large (61,133 words) - recommended");
         System.out.println("2. basic (60 words)");
+        System.out.print("User input: ");
         int action = scan.nextInt();
         if(action==2)
             dictionary = "src\\BasicDictionaryFile.txt"; //option to use basic dictionary file instead
@@ -102,6 +104,7 @@ public class SpellChecker
         System.out.println("Please choose to see suggestions");
         System.out.println("1. yes - recommended");
         System.out.println("2. no ");
+        System.out.print("User input: ");
         int action = scan.nextInt();
         if(action==2)
             suggestions = false;
