@@ -8,7 +8,7 @@
 
 import java.util.Iterator;
 
-public class MyHashtable<T> implements Iterator<T>
+public class MyHashtable<T> implements Iterable<T>
 {
     /**
      * Node in the hash table, practically a basic linked list.
@@ -25,8 +25,7 @@ public class MyHashtable<T> implements Iterator<T>
     private HashNode<T>[] table; //The hash table
 
     private int size; //the of values inserted to the hashtable
-    private int currentElement =-1; //used to keep track of current index of hashtable in order to iterate over the table.
-    private HashNode<T> currentNode =null;//used to keep track of current node in order to iterate over the table element.
+
 
     /**
      * The constructor for MyHashtable object.
@@ -156,82 +155,79 @@ public class MyHashtable<T> implements Iterator<T>
 
         return false; // object not found
     }
-
-    /**
-     * Used to initiate values for iteration over the table.
-     * time complexity : O(1)
-     */
-    public void initIterator()
-    {
-        this.currentElement =-1;
-        this.currentNode =null;
+    public Iterator<T> iterator() {
+        return new MyHashTableIterator();
     }
-
-    /**
-     * Used to iterate over the table's objects.
-     * Return true if there is more object in the table to iterate over,
-     * return false otherwise.
-     * To initiate iterator use initIterator()
-     * To get the next object use next()
-     * Best time complexity: O(1)
-     * Worst time complexity : O(k) where k is the length of the table.
-     * @return true if there is more object in the table to iterate over, and false otherwise.
-     */
-    @Override
-    public boolean hasNext()
+    private class MyHashTableIterator implements Iterator<T>
     {
-        // currentNode node has next
-        if (currentNode != null && currentNode.next != null) { return true; }
-        //check if there is a table element after current element, with nodes
-        for (int i = currentElement +1; i < table.length; i++)
+        private int currentElement =-1; //used to keep track of current index of hashtable in order to iterate over the table.
+        private HashNode<T> currentNode =null;//used to keep track of current node in order to iterate over the table element.
+        /**
+         * Used to iterate over the table's objects.
+         * Return true if there is more object in the table to iterate over,
+         * return false otherwise.
+         * To initiate iterator use initIterator()
+         * To get the next object use next()
+         * Best time complexity: O(1)
+         * Worst time complexity : O(k) where k is the length of the table.
+         * @return true if there is more object in the table to iterate over, and false otherwise.
+         */
+        @Override
+        public boolean hasNext()
         {
-            if (table[i] != null)//found element with nodes
-                return true;
+            // currentNode node has next
+            if (currentNode != null && currentNode.next != null) { return true; }
+            //check if there is a table element after current element, with nodes
+            for (int i = currentElement +1; i < table.length; i++)
+            {
+                if (table[i] != null)//found element with nodes
+                    return true;
+            }
+            return false; //no next object to iterate over
         }
-        return false; //no next object to iterate over
-    }
 
-    /**
-     * Used to iterate over the table's objects.
-     * Return the next object in the iteration.
-     * If no such object exist return null.
-     * To initiate iterator use initIterator()
-     * To check if there is a next object use hasNext()
-     * Best time complexity: O(1)
-     * Worst time complexity : O(k) where k is the length of the table.
-     * @return The next object in the iteration
-     */
-    @Override
-    public T next()
-    {
-        // if either the current or next node are null
-        if (currentNode == null || currentNode.next == null)
+        /**
+         * Used to iterate over the table's objects.
+         * Return the next object in the iteration.
+         * If no such object exist return null.
+         * To initiate iterator use initIterator()
+         * To check if there is a next object use hasNext()
+         * Best time complexity: O(1)
+         * Worst time complexity : O(k) where k is the length of the table.
+         * @return The next object in the iteration
+         */
+        @Override
+        public T next()
         {
-            currentElement++;// go to next element in the table
+            // if either the current or next node are null
+            if (currentNode == null || currentNode.next == null)
+            {
+                currentElement++;// go to next element in the table
 
-            // looping until element with object found
-            while (currentElement < table.length &&
-                    table[currentElement] == null)
-            {
-                currentElement++; // go to next element in the table
+                // looping until element with object found
+                while (currentElement < table.length &&
+                        table[currentElement] == null)
+                {
+                    currentElement++; // go to next element in the table
+                }
+                if (currentElement < table.length)
+                {
+                    currentNode = table[currentElement];// update current node
+                }
+                else // no object has been found
+                {
+                    return null;
+                }
             }
-            if (currentElement < table.length)
+            else //current element in table is ref an object
             {
-                currentNode = table[currentElement];// update current node
+                currentNode = currentNode.next;
             }
-            else // no object has been found
+            if(currentNode.key !=null)// the new current element ref an obj
             {
-                return null;
+                return currentNode.key;
             }
+            return null;
         }
-        else //current element in table is ref an object
-        {
-            currentNode = currentNode.next;
-        }
-        if(currentNode.key !=null)// the new current element ref an obj
-        {
-            return currentNode.key;
-        }
-        return null;
     }
 }

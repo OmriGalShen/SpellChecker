@@ -26,7 +26,6 @@ public class SpellChecker {
         //insert dictionary to hash table:
         MyHashtable<String> dictTable = new MyHashtable<String>(62000);
         FileHelper.insertFileToTable(dictFile,dictTable); // insert dictionary words to hash table
-        System.out.println(dictTable.getSize());
         //insert input text to red black tree:
         RedBlackTree<String> inputTree = new RedBlackTree<String>(); // initialize tree
         FileHelper.insertFileToTree(inputFile,inputTree); // insert input words to tree
@@ -59,11 +58,8 @@ public class SpellChecker {
     {
         double matchScore, bestMatchScore=Integer.MIN_VALUE;
         String bestMatch="";
-        String dictWord;
-        dictTable.initIterator();
-        while (dictTable.hasNext())
+        for (String dictWord : dictTable)
         {
-            dictWord = dictTable.next();
             matchScore=matchCalc(checkWord,dictWord);
             if(matchScore>bestMatchScore) // find match with better score
             {
@@ -106,11 +102,8 @@ public class SpellChecker {
         String[] bestMatches = new String[3];
         double[] scores = new double[3];
         double matchScore=0;
-        dictTable.initIterator();
-        String dictWord;
-        while (dictTable.hasNext())
+        for (String dictWord : dictTable)
         {
-            dictWord = dictTable.next();
             matchScore=Math.min(matchCalc(checkWord,dictWord),matchCalc(dictWord,checkWord));
             if(matchScore>scores[0])
             {
