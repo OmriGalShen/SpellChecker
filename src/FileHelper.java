@@ -49,7 +49,7 @@ public class FileHelper
                 temp=fixWord(temp); //trim spaces and make lower case
                 if(temp.length()>0)
                 {
-                    dictTable.add(temp);
+                    dictTable.insert(temp);
                 }
             }
 
