@@ -4,6 +4,21 @@
  * id: 318230844
  * This is my implementation of very basic chained based hashtable.
  * This is a generic implementation, in which given object used as a value type.
+ * This is based on the the text book (pages 189-192)
+ *
+ * Let n be the number of objects in the table.
+ * let m be the capacity of the table (length of the table initialize in the constructor)
+ * Let a be the load factor (n/m)
+ *
+ * This project uses specifically String objects as values.
+ * We will be using the hashCode of the String class in Java,
+ * This function is very well implemented as so we will be make the assumption
+ * at least for this project sake that the hash process is simple and uniform.
+ *
+ * By using the text book we can now say the complexity of failed search is O(1+a),
+ * because we know the size of the dictionary we will set a to be 1 so we will get O(1).
+ *
+ * Note: we will take the String hashCode and refined it to serve as a index in the table.
  */
 
 import java.util.Iterator;
@@ -63,9 +78,8 @@ public class MyHashtable<T> implements Iterable<T>
 
     /**
      * Insert an object to the the hashtable
-     * Best time complexity: O(1)
-     * Average time complexity : O(1)
-     * Worst time complexity : O(n), where n is number of objects in the table
+     * Time complexity : same complexity of failed search O(1+a) (See page 191)
+     * note : Assuming the hashCode of the object is "good"
      * @param obj Reference to the object to insert to the table
      * @return True if object inserted, false otherwise (if object already in table)
      */
@@ -75,7 +89,7 @@ public class MyHashtable<T> implements Iterable<T>
         int index = hashRefine(obj.hashCode());
         HashNode current = table[index];
 
-        while (current != null)
+        while (current != null) // same complexity of failed search O(1+a)
         {
             if (current.key.equals(obj))  // obj is already in table
             {
@@ -85,20 +99,19 @@ public class MyHashtable<T> implements Iterable<T>
             current = current.next;
         }
         // no obj found so insert new hashNode
-        HashNode hashNode = new HashNode();
-        hashNode.key = obj;
+        HashNode<T> nodeToInsert = new HashNode<T>();
+        nodeToInsert.key = obj;
         // set the new node as head of the list
-        hashNode.next  = table[index];
-        table[index] = hashNode;
+        nodeToInsert.next  = table[index];
+        table[index] = nodeToInsert;
         size++;// new object was added to the table
         return true;
     }
 
     /**
      * Remove an object from the table
-     * Best time complexity: O(1)
-     * Average time complexity : O(1)
-     * Worst time complexity : O(n), where n is number of objects in the table
+     * Time complexity : same complexity of failed search O(1+a) (See page 191)
+     * note : Assuming the hashCode of the object is "good"
      * @param obj The object to remove from the table
      * @return True if object removed from table, false otherwise (was't found).
      */
@@ -109,7 +122,7 @@ public class MyHashtable<T> implements Iterable<T>
         HashNode current = table[index]; //ref to the head of the list
         HashNode previous = null;
 
-        while (current != null)
+        while (current != null)  //same complexity of failed search O(1+a) (See page 191)
         {
             if (current.key.equals(obj)) // obj found
             {
@@ -132,9 +145,8 @@ public class MyHashtable<T> implements Iterable<T>
 
     /**
      * Return true if object is in the table, false otherwise.
-     * Best time complexity: O(1)
-     * Average time complexity : O(1)
-     * Worst time complexity : O(n), where n is number of objects in the table
+     * Time complexity : same complexity of failed search O(1+a) (See page 191)
+     * note : Assuming the hashCode of the object is "good"
      * @param object The object to check if in the table
      * @return True if object is in the table, false otherwise.
      */
@@ -155,6 +167,11 @@ public class MyHashtable<T> implements Iterable<T>
 
         return false; // object not found
     }
+
+    /**
+     * This let us iterate over the table's objects
+     * @return iterator used to iterate over the table's objects
+     */
     public Iterator<T> iterator() {
         return new MyHashTableIterator();
     }

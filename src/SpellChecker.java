@@ -8,13 +8,16 @@
  * Run this file to start the project.
  * This project will use my implementation of red black tree (based on the text book)
  * and my implementation of an chain based hash table (see pages 189-192)
+ *
  * Let k= number of words in dictionary,
- * n=number of words in the input file,
- * l = longest word in both the dictionary file and input file.
+ *     n=number of words in the input file,
+ *     l = longest word in both the dictionary file and input file.
+ *
  * Our time analysis will be based on the usage of the dictionary file
  * having k=16200 words (more or less). The hashtable will be initialize with size k
  * and so insert,delete and contain will be O(1) as detailed in text book.
- * with usage of of smaller dictionary file those action will also take O(1).
+ * (with usage of of smaller dictionary file those action will also take O(1).)
+ *
  * Important to note I implemented a suggestion of correct words using my own custom
  * score system of closeness of words (as this is not well defined enough).
  */
