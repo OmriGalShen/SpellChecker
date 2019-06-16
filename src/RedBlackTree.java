@@ -210,7 +210,7 @@ public class RedBlackTree<T extends Comparable>
      */
     public void insert(Node<T> z)
     {
-        Node<T>y = new Node();
+        Node<T>y = new Node<T>();
         Node<T>x = this.root;
         while (!x.isLeaf())
         {

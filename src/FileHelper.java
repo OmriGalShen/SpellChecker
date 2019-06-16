@@ -6,13 +6,18 @@
  * working with the text files.
  */
 
-import java.io.BufferedReader;
 import java.io.FileInputStream;
-import java.io.InputStreamReader;
 import java.util.Scanner;
 
 public class FileHelper
 {
+    /**
+     * Open a text file using given relative loc.
+     * @param loc string describing relative file location
+     * (example "src\\DictionaryFile.txt")
+     * time complexity : O(1)
+     * @return The text file
+     */
     public static FileInputStream readTextFile(String loc)
     {
         FileInputStream file=null;
@@ -24,21 +29,20 @@ public class FileHelper
         }
         return file;
     }
-    public static void insertFileToTable(FileInputStream file, MyHashtable dictTable)
+
+    /**
+     * Given text file, word by word (Separated by spaces)
+     * insert given string words to MyHashtable.
+     * @param file Text file to read words from
+     * time complexity : O(k), where k is the number of words in text file
+     * @param table The table to insert words to.
+     */
+    public static void insertFileToTable(FileInputStream file, MyHashtable<String> table)
     {
         if(file==null) //problem with file
             return;
-        // Open the file
-        BufferedReader br = new BufferedReader(new InputStreamReader(file));
-
-        String strLine;
-        try {
-            /*Read File Line By Line
-            while ((strLine = br.readLine()) != null) {
-                // Print the content on the console
-                strLine = processWord(strLine);
-                tree.insert(strLine);
-            }*/
+        try
+        {
             //Read file Word by Word
             Scanner input=new Scanner(file);//help cut file to words
             String temp;
@@ -46,10 +50,10 @@ public class FileHelper
             while(input.hasNext())
             {
                 temp=input.next(); // current word in file
-                temp=fixWord(temp); //trim spaces and make lower case
+                temp=fixWord(temp,false); //trim spaces and make lower case
                 if(temp.length()>0)
                 {
-                    dictTable.insert(temp);
+                    table.insert(temp);
                 }
             }
 
@@ -61,28 +65,27 @@ public class FileHelper
             System.out.println("problem with reading file");
         }
     }
+
+    /**
+     * Given text file, word by word (Separated by spaces)
+     * insert given string words to red black tree.
+     * time complexity : O(k), where k is the number of words in text file
+     * @param file Text file to read words from.
+     * @param tree The tree to insert words to.
+     */
     public static void insertFileToTree(FileInputStream file, RedBlackTree<String> tree)
     {
         if(file==null)//problem with file
             return;
-        // Open the file
-        BufferedReader br = new BufferedReader(new InputStreamReader(file));
-
-        String strLine;
-        try {
-            /*Read File Line By Line
-            while ((strLine = br.readLine()) != null) {
-                // Print the content on the console
-                strLine = processWord(strLine);
-                tree.insert(strLine);
-            }*/
+        try
+        {
             //Read file Word by Word
             Scanner input=new Scanner(file);//help cut file to words
             String temp;
             while(input.hasNext())
             {
                 temp=input.next();// current word in file
-                temp=fixWord(temp); //trim spaces and make lower case
+                temp=fixWord(temp,false); //trim spaces and make lower case
                 if(temp.length()>0) //word is valid
                     tree.insert(temp); //insert word in tree
             }
@@ -97,14 +100,17 @@ public class FileHelper
     }
 
     /**
-     * Make a fixed string without special characters and spaces
-     * and returns it
-     * @param str String to fix
-     * @return the given string without special characters and spaces
+     * Make string lower case and without spaces.
+     * If given true also remove special characters.
+     * @param str String to "fix"
+     * @param fixSpecialChars true for removing special character and false otherwise
+     * @return the fixed String
      */
-    private static String fixWord(String str)
+    private static String fixWord(String str, Boolean fixSpecialChars)
     {
-        String result = str.replaceAll("[-+.^:,\")(]","");
+        String result=str;
+        if(fixSpecialChars)
+             result = str.replaceAll("[-+.^:,\")(]","");
         result = result.toLowerCase().trim();
         return result;
     }
