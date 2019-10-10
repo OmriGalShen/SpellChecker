@@ -10,7 +10,7 @@ and also display suggestions for a fix.
 In this task, I needed to implement by myself a red-black binary tree and HashSet table.  
 I also needed to make the program efficient.  
 
-# How to start?  
+## How to start?  
 In the "src" directory use can put your input text in the "CustomInput.txt" file.  
 You can also use the alredy defined "InputFile.txt" with an exmple text.  
 You need to run the file "SpellChecker.java"  
