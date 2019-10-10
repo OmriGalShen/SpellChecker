@@ -1,6 +1,7 @@
 # Created by .ignore support plugin (hsz.mobi)
 ### Java template
-
+/.idea/
+.idea/workspace.xml
 *.xml
 
 # Compiled class file
